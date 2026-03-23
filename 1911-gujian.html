@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国古代建筑成就（1911年前）——民居·官府·皇宫·桥梁</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", "宋体", sans-serif;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background: #f7f3ed;
+            color: #333;
+            line-height: 1.8;
+            scroll-behavior: smooth; /* 全局平滑滚动 */
+        }
+
+        /* 新增：搜索栏样式 */
+        .search-container {
+            display: block; /* 默认显示，仅在首页展示 */
+            background: #fff;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 40px; /* 跟导航栏高度匹配 */
+            z-index: 998;
+            width: 100%;
+        }
+
+        .search-wrap {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #f0e6dc;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #8B4513;
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+
+        .search-btn {
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(90deg, #8B4513, #a0522d);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(90deg, #a0522d, #c17142);
+            transform: translateY(-2px);
+        }
+
+        .clear-btn {
+            padding: 0.8rem 1.2rem;
+            background: #f0e6dc;
+            color: #8B4513;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            background: #e6d7c0;
+            transform: translateY(-2px);
+        }
+
+        /* 新增：搜索结果提示 */
+        .search-result-tip {
+            max-width: 800px;
+            margin: 0.5rem auto 0;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .search-result-tip.highlight {
+            color: #8B4513;
+            font-weight: bold;
+        }
+
+        /* 导航栏样式 - 升级为渐变+动态下划线 */
+        nav {
+            background: linear-gradient(135deg, #8B4513 0%, #6d3c1b 100%);
+            color: #fff;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .nav-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            padding: 0.7rem 1.4rem;
+            background: transparent;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 新增：导航按钮hover动态下划线 */
+        .nav-btn::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn.active {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .nav-btn.active::after {
+            width: 100%;
+        }
+
+        /* 板块通用样式 - 新增渐入动画 */
+        .page-section {
+            width: 100%;
+            min-height: calc(100vh - 88px);
+            padding: 3rem 1.5rem;
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .page-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #8B4513;
+            margin-bottom: 2.5rem;
+            position: relative;
+            background: linear-gradient(90deg, #8B4513, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* 渐变文字 */
+        }
+
+        .page-section h2::after {
+            content: "";
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #8B4513, #ff8c00);
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .page-section .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.15rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 2;
+            position: relative;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.6);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 首页样式 - 升级沉浸式视差效果 */
+        #home {
+            width: 100%;
+            min-height: calc(100vh - 88px);
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url(images/03af9ed28fb06ea4cfa54a5404a816b2.jpg) center/cover no-repeat fixed; /* 视差背景 */
+            color: #fff;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 新增：首页动态粒子效果 */
+        #home::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(10px, 10px); }
+            50% { transform: translate(0, 10px); }
+            75% { transform: translate(-10px, 5px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        #home.active {
+            display: flex;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.7);
+            background: linear-gradient(90deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 4px 15px rgba(0,0,0,0.7); }
+            to { text-shadow: 0 4px 25px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.5); }
+        }
+
+        #home h3 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 0.8rem 0;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+        }
+
+        #home .home-tag {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #home .home-tag span {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        #home .home-tag span:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.05);
+            border-color: #ffd700;
+        }
+
+        /* 卡片布局样式 - 升级3D hover+动态阴影 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            transform-style: preserve-3d; /* 3D效果 */
+        }
+
+        .card:hover {
+            transform: translateY(-8px) rotateX(5deg) rotateY(2deg);
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.2);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 240px;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-bottom: 3px solid #8B4513;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.08); /* 图片缩放 */
+        }
+
+        /* 升级：悬停显示建筑名称+渐变背景 */
+        .card-img-tooltip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .card:hover .card-img-tooltip {
+            transform: translateY(0);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(to bottom, #fff, #f9f6f1);
+        }
+
+        .card h3 {
+            color: #8B4513;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover h3 {
+            color: #ff8c00;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 详情弹窗样式 - 升级玻璃拟态+入场动画 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 2rem 1rem;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: rgba(255,255,255,0.95);
+            max-width: 900px;
+            width: 100%;
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .close:hover {
+            color: #e74c3c;
+            transform: rotate(90deg) scale(1.1);
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .modal-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 3px solid #f7f3ed;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: #8B4513;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #8B4513, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .modal-period {
+            font-weight: bold;
+            color: #8B4513;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0e6dc;
+        }
+
+        .modal-desc {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #333;
+        }
+
+        /* 知识课堂样式 - 升级折叠面板+交互 */
+        .knowledge-box {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .knowledge-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .knowledge-tab {
+            padding: 0.8rem 1.5rem;
+            background: #f0e6dc;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .knowledge-tab.active {
+            background: #8B4513;
+            color: #fff;
+        }
+
+        .knowledge-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .knowledge-content.active {
+            display: block;
+        }
+
+        .knowledge-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .knowledge-table th, .knowledge-table td {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .knowledge-table th {
+            background: linear-gradient(90deg, #f0e6dc, #e6d7c0);
+            color: #8B4513;
+            font-weight: bold;
+        }
+
+        .knowledge-table tr:nth-child(even) {
+            background: #f9f6f1;
+        }
+
+        /* 新增：AI问答模块样式 */
+        .ai-chat-box {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 1400px;
+            margin: 2rem auto 0;
+        }
+
+        .ai-chat-header {
+            font-size: 1.5rem;
+            color: #8B4513;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .ai-chat-header i {
+            font-size: 1.8rem;
+        }
+
+        /* 新增：常见问题快捷按钮样式 */
+        .chat-quick-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f9f6f1;
+            border-radius: 12px;
+        }
+
+        .quick-question-btn {
+            padding: 0.6rem 1.2rem;
+            background: #f0e6dc;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #8B4513;
+            transition: all 0.3s ease;
+        }
+
+        .quick-question-btn:hover {
+            background: #8B4513;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 2px solid #f0e6dc;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background: #f9f6f1;
+        }
+
+        .chat-message {
+            margin-bottom: 1.5rem;
+            max-width: 90%;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .user-message {
+            margin-left: auto;
+            background: linear-gradient(90deg, #8B4513, #a0522d);
+            color: #fff;
+            padding: 1rem 1.2rem;
+            border-radius: 12px 12px 0 12px;
+        }
+
+        .ai-message {
+            margin-right: auto;
+            background: #fff;
+            color: #333;
+            padding: 1rem 1.2rem;
+            border-radius: 12px 12px 12px 0;
+            border: 1px solid #f0e6dc;
+        }
+
+        .message-time {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .chat-input {
+            flex: 1;
+            min-height: 80px;
+            padding: 1rem 1.2rem;
+            border: 2px solid #f0e6dc;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            resize: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: #8B4513;
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+
+        .chat-send-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(90deg, #8B4513, #a0522d);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .chat-send-btn:hover {
+            background: linear-gradient(90deg, #a0522d, #c17142);
+            transform: translateY(-2px);
+        }
+
+        .chat-send-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading-indicator {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 互动学习板块 - 升级答题交互+动画 */
+        .quiz-box {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+
+        /* 新增：识图小游戏样式 */
+        .game-box {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .game-score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8B4513;
+            background: #f0e6dc;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+        }
+
+        .game-img-container {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 0 auto 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 3px solid #f0e6dc;
+        }
+
+        .game-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .game-option {
+            padding: 1rem;
+            background: #f0e6dc;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .game-option:hover {
+            background: #e6d7c0;
+            transform: translateY(-2px);
+        }
+
+        .game-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .game-option.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .game-feedback {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            min-height: 2rem;
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .game-btn {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, #8B4513, #a0522d);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .game-btn:hover {
+            background: linear-gradient(90deg, #a0522d, #c17142);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .game-result {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            animation: bounceIn 0.6s ease;
+        }
+
+        .quiz-item {
+            margin-bottom: 1.2rem;
+            padding: 1.5rem;
+            background: #f9f6f1;
+            border-radius: 12px;
+            border-left: 4px solid #8B4513;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-item:hover {
+            background: #f0e6dc;
+            transform: translateX(5px);
+        }
+
+        .quiz-item p {
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: #8B4513;
+        }
+
+        .quiz-option {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .quiz-option:hover {
+            background: rgba(139, 69, 19, 0.05);
+        }
+
+        .quiz-btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(90deg, #8B4513, #a0522d);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .quiz-btn:hover {
+            background: linear-gradient(90deg, #a0522d, #c17142);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        #quiz-result {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            animation: bounceIn 0.6s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            70% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* 页脚样式 - 升级渐变+动态效果 */
+        footer {
+            background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
+            color: #fff;
+            text-align: center;
+            padding: 2rem 1rem;
+            width: 100%;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #8B4513, #ffd700, #8B4513);
+            animation: slide 8s infinite linear;
+        }
+
+        @keyframes slide {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        footer p {
+            margin: 0.3rem 0;
+            position: relative;
+        }
+
+        /* 响应式适配 - 优化移动端体验 */
+        @media (max-width: 768px) {
+            .nav-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            #home h1 {
+                font-size: 2.5rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+                border-radius: 12px;
+            }
+
+            .knowledge-tabs {
+                flex-direction: column;
+            }
+
+            /* 响应式：搜索栏适配 */
+            .search-wrap {
+                flex-direction: column;
+            }
+
+            .search-input, .search-btn, .clear-btn {
+                width: 100%;
+            }
+
+            /* 响应式：游戏适配 */
+            .game-img-container {
+                height: 250px;
+            }
+
+            .game-options {
+                grid-template-columns: 1fr;
+            }
+
+            /* 响应式：AI问答适配 */
+            .chat-container {
+                height: 300px;
+            }
+            
+            .chat-send-btn {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            
+            /* 响应式：快捷问题按钮适配 */
+            .chat-quick-questions {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 - 四大类+首页+知识课堂+互动学习 -->
+    <nav>
+        <div class="nav-wrap">
+            <button class="nav-btn active" onclick="switchSection('home')">首页</button>
+            <button class="nav-btn" onclick="switchSection('minju')">民居</button>
+            <button class="nav-btn" onclick="switchSection('guanfu')">官府</button>
+            <button class="nav-btn" onclick="switchSection('huanggong')">皇宫</button>
+            <button class="nav-btn" onclick="switchSection('qiaoliang')">桥梁</button>
+            <button class="nav-btn" onclick="switchSection('knowledge')">知识课堂</button>
+            <button class="nav-btn" onclick="switchSection('quiz')">互动学习</button>
+        </div>
+    </nav>
+
+    <!-- 新增：全局搜索栏（添加ID用于控制显示/隐藏） -->
+    <div class="search-container" id="searchContainer">
+        <div class="search-wrap">
+            <input type="text" class="search-input" id="searchInput" placeholder="搜索建筑名称/类型/时期（如：赵州桥、明清、石拱桥）">
+            <button class="search-btn" onclick="searchBuildings()">搜索</button>
+            <button class="clear-btn" onclick="clearSearch()">清空</button>
+        </div>
+        <div class="search-result-tip" id="searchResultTip">输入关键词开始搜索</div>
+    </div>
+
+    <!-- 首页板块 - 默认显示 -->
+    <section id="home" class="page-section active">
+        <h1>中国古代建筑成就</h1>
+        <h3>1911年前 · 民居 | 官府 | 皇宫 | 桥梁</h3>
+        <p>木构为骨，礼制为魂，天人合一，因地制宜</p>
+        <p>中华五千载建筑智慧，凝聚成独树一帜的东方建筑体系</p>
+        <div class="home-tag">
+            <span>木构架体系</span>
+            <span>榫卯斗拱</span>
+            <span>中轴对称</span>
+            <span>地域特色</span>
+            <span>工程奇迹</span>
+            <span>礼制秩序</span>
+            <span>天人合一</span>
+        </div>
+    </section>
+
+    <!-- 民居板块 - 全品类覆盖（1911年前） -->
+    <section id="minju" class="page-section">
+        <h2>🏠 中国古代民居（1911年前）</h2>
+        <p class="intro">民居为百姓居住、生活、聚居之建筑，就地取材、顺应地域气候，承载民间生活智慧与家族文化，是中国古代建筑中最具烟火气与地域多样性的品类，以下为各地区、各民族经典民居代表，均为1911年前留存/始建。</p>
+        <div class="card-grid" id="minju-card-container"></div>
+    </section>
+
+    <!-- 官府板块 - 全品类覆盖（1911年前） -->
+    <section id="guanfu" class="page-section">
+        <h2>🏛️ 中国古代官府建筑（1911年前）</h2>
+        <p class="intro">官府为古代各级行政、司法、军政办公之官方建筑，依礼制布局、等级森严，兼具办公与官署居住功能，是古代行政制度与官式建筑的物质载体，以下为省、府、州、县各级经典官府代表，均为1911年前始建/留存。</p>
+        <div class="card-grid" id="guanfu-card-container"></div>
+    </section>
+
+    <!-- 皇宫板块 - 全品类覆盖（1911年前） -->
+    <section id="huanggong" class="page-section">
+        <h2>🏯 中国古代皇宫建筑（1911年前）</h2>
+        <p class="intro">皇宫为古代帝王处理朝政、皇家居住的最高等级建筑，集中国古代建筑技艺之大成，中轴对称、气势恢宏，彰显皇权至上与礼制极致，以下为各朝代都城核心皇宫/宫阙代表，均为1911年前始建/留存。</p>
+        <div class="card-grid" id="huanggong-card-container"></div>
+    </section>
+
+    <!-- 桥梁板块 - 全品类覆盖（1911年前） -->
+    <section id="qiaoliang" class="page-section">
+        <h2>🌉 中国古代桥梁建筑（1911年前）</h2>
+        <p class="intro">桥梁为跨越水域、山谷的交通建筑，中国古代桥梁融工程技术与建筑艺术于一体，石拱、木梁、浮桥、廊桥各领风骚，多项技术为世界首创，以下为各类型、各地区经典桥梁代表，均为1911年前始建/留存。</p>
+        <div class="card-grid" id="qiaoliang-card-container"></div>
+    </section>
+
+    <!-- 新增：搜索结果展示板块 -->
+    <section id="search-result" class="page-section">
+        <h2>🔍 搜索结果</h2>
+        <div class="card-grid" id="search-result-container"></div>
+    </section>
+
+    <!-- 知识课堂板块 - 升级为标签页交互 + AI问答 -->
+    <section id="knowledge" class="page-section">
+        <h2>📚 建筑知识小课堂</h2>
+        <div class="knowledge-box">
+            <div class="knowledge-tabs">
+                <button class="knowledge-tab active" onclick="switchKnowledgeTab('structure')">核心结构</button>
+                <button class="knowledge-tab" onclick="switchKnowledgeTab('concept')">建筑理念</button>
+                <button class="knowledge-tab" onclick="switchKnowledgeTab('development')">发展脉络</button>
+                <button class="knowledge-tab" onclick="switchKnowledgeTab('region')">地域流派</button>
+                <button class="knowledge-tab" onclick="switchKnowledgeTab('compare')">类型对比</button>
+            </div>
+
+            <div class="knowledge-content active" id="structure">
+                <h3 style="color: #8B4513; margin-bottom: 1rem;">核心建筑结构</h3>
+                <ul style="line-height: 2; padding-left: 2rem;">
+                    <li><strong>木构架</strong>：抬梁式（北方主流，层层抬梁承托屋顶）、穿斗式（南方主流，穿枋串联柱子）、井干式（林区用原木堆叠）</li>
+                    <li><strong>斗拱</strong>：中国古建筑特有的承重构件，将屋顶重量传导至立柱，兼具装饰与抗震功能</li>
+                    <li><strong>榫卯</strong>：木构件间的连接方式，无需钉子，可承受各种外力，是木构建筑的灵魂</li>
+                    <li><strong>飞檐</strong>：屋檐向上翘起，增加采光、利于排水，兼具美学价值</li>
+                    <li><strong>藻井</strong>：天花板中央的装饰性结构，多为八角形或圆形，常见于宫殿、寺庙核心位置</li>
+                </ul>
+            </div>
+
+            <div class="knowledge-content" id="concept">
+                <h3 style="color: #8B4513; margin-bottom: 1rem;">传统建筑理念</h3>
+                <ul style="line-height: 2; padding-left: 2rem;">
+                    <li><strong>天人合一</strong>：建筑顺应自然环境，与山水、气候融为一体，追求人与自然的和谐</li>
+                    <li><strong>礼制秩序</strong>：建筑的规模、形制、装饰严格遵循等级制度，体现社会秩序</li>
+                    <li><strong>因地制宜</strong>：根据地域气候、材料、文化特点设计，如北方厚墙保暖、南方通透通风</li>
+                    <li><strong>风水思想</strong>：讲究藏风聚气、背山面水，影响建筑选址与布局</li>
+                    <li><strong>对称均衡</strong>：以中轴线为中心对称布局，体现中式美学的平衡感</li>
+                </ul>
+            </div>
+
+            <div class="knowledge-content" id="development">
+                <h3 style="color: #8B4513; margin-bottom: 1rem;">建筑发展脉络</h3>
+                <ol style="line-height: 2; padding-left: 2rem;">
+                    <li><strong>先秦萌芽</strong>：夯土技术成熟，木构架雏形出现，形成基本建筑礼制</li>
+                    <li><strong>秦汉奠基</strong>：大规模宫殿、陵墓建设，抬梁式木构架体系成熟</li>
+                    <li><strong>隋唐成熟</strong>：建筑规模宏大，斗拱体系完善，桥梁技术世界领先</li>
+                    <li><strong>宋精致化</strong>：建筑向精巧化发展，《营造法式》规范建筑标准</li>
+                    <li><strong>元融合</strong>：融合蒙藏建筑风格，简化木构架，增加装饰多样性</li>
+                    <li><strong>明规范</strong>：建筑形制规范化，砖作技术普及，紫禁城建成</li>
+                    <li><strong>清集大成</strong>：建筑技艺达到顶峰，融合各民族风格，园林艺术成熟</li>
+                </ol>
+            </div>
+
+            <div class="knowledge-content" id="region">
+                <h3 style="color: #8B4513; margin-bottom: 1rem;">地域建筑流派</h3>
+                <ul style="line-height: 2; padding-left: 2rem;">
+                    <li><strong>北方四合院</strong>：北京为代表，封闭围合，尊卑有序</li>
+                    <li><strong>江南民居</strong>：苏浙为代表，宅园结合，小巧精致</li>
+                    <li><strong>岭南骑楼</strong>：两广闽为代表，中西合璧，遮阳避雨</li>
+                    <li><strong>西南吊脚楼</strong>：湘黔渝为代表，干栏式结构，通风防潮</li>
+                    <li><strong>西北窑洞</strong>：陕甘宁为代表，穴居式，冬暖夏凉</li>
+                    <li><strong>福建土楼</strong>：闽粤赣为代表，夯土巨型建筑，聚族而居</li>
+                    <li><strong>藏族碉房</strong>：青藏地区，石砌厚墙，适应高寒气候</li>
+                </ul>
+            </div>
+
+            <div class="knowledge-content" id="compare">
+                <table class="knowledge-table">
+                    <tr>
+                        <th>建筑类型</th>
+                        <th>功能</th>
+                        <th>等级</th>
+                        <th>核心特点</th>
+                    </tr>
+                    <tr>
+                        <td>民居</td>
+                        <td>居住生活、家族聚居</td>
+                        <td>低</td>
+                        <td>地域化、生活化、实用性强</td>
+                    </tr>
+                    <tr>
+                        <td>官府</td>
+                        <td>办公理政、司法行政</td>
+                        <td>中</td>
+                        <td>庄重对称、等级鲜明、威仪感强</td>
+                    </tr>
+                    <tr>
+                        <td>皇宫</td>
+                        <td>帝王朝政、皇家生活</td>
+                        <td>最高</td>
+                        <td>中轴对称、宏伟壮丽、礼制极致</td>
+                    </tr>
+                    <tr>
+                        <td>桥梁</td>
+                        <td>交通通行、水利协调</td>
+                        <td>无等级</td>
+                        <td>工程技术主导、结构精巧、实用性强</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 新增：AI问答模块 -->
+        <div class="ai-chat-box">
+            <div class="ai-chat-header">
+                🤖 AI建筑知识问答
+            </div>
+            
+            <!-- 新增：常见问题快捷按钮 -->
+            <div class="chat-quick-questions">
+                <button class="quick-question-btn" onclick="sendQuickQuestion('中国古代建筑的核心结构有哪些？')">中国古代建筑的核心结构有哪些？</button>
+                <button class="quick-question-btn" onclick="sendQuickQuestion('四合院的布局特点是什么？')">四合院的布局特点是什么？</button>
+                <button class="quick-question-btn" onclick="sendQuickQuestion('赵州桥的建筑技术有什么创新？')">赵州桥的建筑技术有什么创新？</button>
+                <button class="quick-question-btn" onclick="sendQuickQuestion('故宫的建筑礼制体现在哪些方面？')">故宫的建筑礼制体现在哪些方面？</button>
+                <button class="quick-question-btn" onclick="sendQuickQuestion('福建土楼为什么是圆形的？')">福建土楼为什么是圆形的？</button>
+                <button class="quick-question-btn" onclick="sendQuickQuestion('斗拱和榫卯的区别是什么？')">斗拱和榫卯的区别是什么？</button>
+                <button class="quick-question-btn" onclick="sendQuickQuestion('不同地域的民居有什么差异？')">不同地域的民居有什么差异？</button>
+                <button class="quick-question-btn" onclick="sendQuickQuestion('古代桥梁有哪些类型？')">古代桥梁有哪些类型？</button>
+            </div>
+            
+            <div class="chat-container" id="chatContainer">
+                <!-- 欢迎消息 -->
+                <div class="chat-message ai-message">
+                    <div>你好！我是中国古代建筑知识AI助手，有任何关于古代民居、官府、皇宫、桥梁的问题都可以问我哦！</div>
+                    <div class="message-time">${new Date().toLocaleTimeString()}</div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <textarea class="chat-input" id="chatInput" placeholder="请输入你的问题（例如：赵州桥的建筑特点是什么？、四合院的布局有什么讲究？）"></textarea>
+                <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">发送</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 互动学习板块 - 升级答题体验 + 新增识图小游戏 -->
+    <section id="quiz" class="page-section">
+        <h2>🧠 互动学习小测验</h2>
+        
+        <!-- 原有答题板块 -->
+        <div class="quiz-box">
+            <h3 style="color: #8B4513; margin-bottom: 1.5rem; text-align: center;">📖 建筑知识问答</h3>
+            <div class="quiz-item">
+                <p>1. 世界现存最早的敞肩石拱桥是？</p>
+                <div class="quiz-option"><label><input type="radio" name="q1" value="0"> 卢沟桥</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q1" value="1"> 赵州桥</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q1" value="0"> 洛阳桥</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>2. 白墙黛瓦、马头墙是哪种民居的典型特征？</p>
+                <div class="quiz-option"><label><input type="radio" name="q2" value="0"> 北京四合院</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q2" value="1"> 徽派民居</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q2" value="0"> 福建土楼</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>3. 中国现存规模最大、保存最完整的皇宫是？</p>
+                <div class="quiz-option"><label><input type="radio" name="q3" value="1"> 北京故宫</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q3" value="0"> 沈阳故宫</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q3" value="0"> 唐大明宫</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>4. 中国现存最完整的古代县衙是？</p>
+                <div class="quiz-option"><label><input type="radio" name="q4" value="1"> 平遥县衙</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q4" value="0"> 南阳府衙</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q4" value="0"> 直隶总督署</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>5. 以下哪项不属于中国古代木构架结构？</p>
+                <div class="quiz-option"><label><input type="radio" name="q5" value="0"> 抬梁式</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q5" value="0"> 穿斗式</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q5" value="1"> 拱券式</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>6. 中国首座跨海梁式石桥是？</p>
+                <div class="quiz-option"><label><input type="radio" name="q6" value="0"> 广济桥</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q6" value="1"> 洛阳桥</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q6" value="0"> 宝带桥</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>7. 福建土楼的主要防御功能是为了抵御？</p>
+                <div class="quiz-option"><label><input type="radio" name="q7" value="0"> 洪水</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q7" value="1"> 盗匪与战乱</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q7" value="0"> 野兽</label></div>
+            </div>
+            <button class="quiz-btn" onclick="checkQuiz()">提交答案</button>
+            <div id="quiz-result"></div>
+        </div>
+
+        <!-- 新增：建筑识图小游戏板块（默认图片修改为images/游戏.jpj） -->
+        <div class="game-box">
+            <h3 style="color: #8B4513; margin-bottom: 1.5rem; text-align: center;">🎮 建筑识图小游戏</h3>
+            <div class="game-header">
+                <div class="game-score">当前得分：<span id="game-score">0</span> 分</div>
+                <div class="game-score">当前关卡：<span id="game-level">1</span>/10</div>
+            </div>
+            
+            <div class="game-img-container">
+                <img id="game-img" class="game-img" src="images/游戏.jpg" alt="建筑识图">
+            </div>
+            
+            <div class="game-feedback" id="game-feedback"></div>
+            
+            <div class="game-options" id="game-options"></div>
+            
+            <div class="game-controls">
+                <button class="game-btn" onclick="startGame()">开始游戏</button>
+                <button class="game-btn" onclick="resetGame()">重置游戏</button>
+            </div>
+            
+            <div id="game-result" class="game-result" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- 详情弹窗 -->
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 class="modal-title" id="modal-title"></h3>
+            <img id="modal-img" class="modal-img">
+            <span class="modal-period" id="modal-period"></span>
+            <div class="modal-desc" id="modal-desc"></div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>中国古代建筑成就 · 覆盖1911年前民居|官府|皇宫|桥梁经典</p>
+        <p>核心特色：木构架体系 · 礼制秩序 · 天人合一 · 地域因地制宜</p>
+    </footer>
+
+    <script>
+        // 建筑核心数据 - 1911年前民居/官府/皇宫/桥梁 全品类覆盖
+        const buildingData = {
+            // 首页精选
+            home: [
+                { 
+                    name: "北京四合院", 
+                    type: "民居", 
+                    period: "明清", 
+                    img: "https://picsum.photos/id/1011/800/500", 
+                    desc: "北方民居代表，中轴对称、尊卑有序，院落封闭，体现传统家族礼制，是北方合院式建筑的典范。" 
+                },
+                { 
+                    name: "北京故宫", 
+                    type: "皇宫", 
+                    period: "明永乐十八年始建", 
+                    img: "https://picsum.photos/id/1040/800/500", 
+                    desc: "世界现存规模最大、保存最完整的木质结构宫殿建筑群，中轴对称、前朝后寝，彰显皇权至上的礼制思想。" 
+                },
+                { 
+                    name: "赵州桥", 
+                    type: "桥梁", 
+                    period: "隋开皇十五年始建", 
+                    img: "https://picsum.photos/id/1029/800/500", 
+                    desc: "由李春设计建造，是世界现存最早、保存最完整的敞肩石拱桥，历经1400余年仍完好使用。" 
+                },
+                { 
+                    name: "平遥县衙", 
+                    type: "官府", 
+                    period: "北魏始建，明清重修", 
+                    img: "https://picsum.photos/id/1039/800/500", 
+                    desc: "中国现存最完整的古代县级官署建筑，前衙后宅、中轴对称，完整保留了古代县衙的规制体系。" 
+                }
+            ],
+            // 民居-1911年前 全地域/全民族经典
+            minju: [
+                { 
+                    name: "北京四合院", 
+                    period: "明清", 
+                    img:"./images/北京四合院.jpg",
+                    desc: "北方汉民族合院式民居典范，中轴对称、坐北朝南，分进院落、尊卑有序，围合式布局兼顾私密性与家族聚居，木构架结构，青砖灰瓦，适配北方寒冷干燥气候，是明清北京平民与士大夫阶层的主流居住形式，1911年前广泛留存。" 
+                },
+                { 
+                    name: "徽派民居", 
+                    period: "明中期至清", 
+                    img:"./images/徽派民居.jpg",
+                    desc: "江南徽州地区经典民居，白墙黛瓦、马头墙（防火防风）为标志性特征，砖木结构，内设天井采光排水，砖雕、木雕、石雕“三雕”工艺精湛，宅园结合，顺应皖南山地地形，是明清徽商家族的居住建筑，1911年前留存于安徽歙县、黟县等地。" 
+                },
+                { 
+                    name: "福建土楼", 
+                    period: "宋元始建，明清鼎盛", 
+                    img:"./images/福建土楼.webp",
+                    desc: "客家与闽南族群聚族而居的巨型夯土民居，分圆形、方形土楼，外墙以生土、砂石、竹木夯筑，厚达1-2米，防御性极强，内部环形布局，集居住、祭祀、防御于一体，最多可住数百人，适配闽西山区的生存环境，1911年前广泛留存于闽粤赣交界地区。" 
+                },
+                { 
+                    name: "陕北窑洞", 
+                    period: "上古起源，明清成熟", 
+                    img:"./images/陕北窑洞.webp",
+                    desc: "黄土高原特色穴居式民居，分靠山窑、地坑窑、箍窑三类，依黄土层开凿，冬暖夏凉、节能环保，就地取材无需大量建材，适配陕北干旱少雨、黄土层深厚的地理特征，是1911年前陕北百姓的主流居住形式。" 
+                },
+                { 
+                    name: "湘西吊脚楼", 
+                    period: "唐宋始建，明清鼎盛", 
+                   img:"./images/湘西吊脚楼.webp",
+                    desc: "湘西土家族、苗族干栏式民居，依山而建、悬空立柱，下层架空放杂物/养牲畜，上层居住，木质结构，飞檐翘角，适配湘西多雨潮湿、山地崎岖的环境，通风防潮，1911年前留存于湘西、鄂西、渝东南等少数民族地区。" 
+                },
+                { 
+                    name: "岭南骑楼", 
+                    period: "清中期至清末", 
+                    img:"./images/岭南骑楼.webp",
+                    desc: "岭南广东、广西、福建沿海商住两用民居，中西合璧风格，底层沿街挑出形成廊道（骑楼），遮阳避雨、方便商贸，上层居住，砖木结构，适配岭南高温多雨、商贸发达的特点，1911年前留存于广州、汕头、梧州等沿海城市。" 
+                },
+                { 
+                    name: "晋商大院（乔家大院）", 
+                    period: "清乾隆至光绪", 
+                    img:"./images/晋商大院.webp", 
+                    desc: "晋商家族合院式民居代表，以乔家、王家、曹家大院为核心，布局方正、院落重叠，砖雕、木雕、石雕精美，集居住、商贸、祭祀于一体，高墙深院兼具防御性，木构架结构，青砖灰瓦，是1911年前晋商财富与地位的建筑体现，留存于山西祁县、平遥等地。" 
+                },
+                { 
+                    name: "苏州园林民居", 
+                    period: "明至清", 
+                    img:"./images/苏州园林民居.webp", 
+                    desc: "江南苏州宅园合一的文人民居，将自然山水浓缩于庭院，移步换景、曲径通幽，设亭台楼阁、假山池沼，木构架结构，粉墙黛瓦，适配江南温润多雨的气候，是1911年前江南文人雅士的居住典范，留园、拙政园旁的民居为典型代表。" 
+                },
+                { 
+                    name: "云南一颗印", 
+                    period: "明至清", 
+                    img:"./images/云南一颗印.jpg",
+                    desc: "云南汉族与彝族合居的四合院民居，方方正正如印章，单栋两层，围合式布局，天井狭小（防西晒），夯土筑墙、青瓦覆顶，适配云南四季如春、阳光强烈的气候，1911年前广泛留存于昆明及云南中部地区。" 
+                },
+                { 
+                    name: "蒙古族蒙古包", 
+                    period: "上古起源，明清沿用", 
+                     img:"./images/蒙古族蒙古包.webp", 
+                    desc: "蒙古族游牧民族移动式民居，以木架为骨、羊毛毡为围，圆形布局，易搭建易拆卸，适配草原游牧的生活方式，冬暖夏凉，1911年前为蒙古高原蒙古族的主流居住形式，至今仍有传统样式留存。" 
+                },
+                { 
+                    name: "藏族碉房", 
+                    period: "吐蕃时期始建，明清成熟", 
+                     img:"./images/藏族碉房.jpg", 
+                    desc: "青藏高原藏族民居，石砌墙体、厚达数尺，平顶设计，依山而建，分多层，底层养牲畜、上层居住，防御性与保暖性极强，适配青藏高原高寒、多风、多地震的环境，1911年前广泛留存于西藏、青海、四川藏区。" 
+                },
+                { 
+                    name: "傣族竹楼", 
+                    period: "上古起源，明清沿用", 
+                     img:"./images/傣族竹楼.webp", 
+                    desc: "云南傣族干栏式民居，以竹子为主要建材，底层架空、上层居住，尖顶斜檐，通风防潮、防蚊虫，适配云南西双版纳高温多雨、热带季风的气候，1911年前为傣族的主流居住形式，部分竹楼以木代竹留存至今。" 
+                },
+                { 
+                    name: "客家围龙屋", 
+                    period: "明清", 
+                    img:"./images/客家围龙屋.webp", 
+                    desc: "客家族群聚族而居的合院式民居，半月形围屋与方形堂屋结合，中轴对称，背靠山体、前有水塘，集居住、祭祀、防御于一体，夯土筑墙，适配粤东、赣南山区的环境，1911年前留存于梅州、赣州等客家地区。" 
+                },
+                { 
+                    name: "江南水乡民居", 
+                    period: "明至清", 
+                     img:"./images/江南水乡民居.webp", 
+                    desc: "江浙沪水乡地区经典民居，依水而建、前街后河，木构架结构，粉墙黛瓦，设河埠头、水榭，穿斗式梁架，适配江南水网密布、温润多雨的特点，1911年前留存于周庄、同里、乌镇等水乡古镇。" 
+                },
+                { 
+                    name: "西北平顶土房", 
+                    period: "上古起源，明清沿用", 
+                     img:"./images/西北平顶土房.webp", 
+                    desc: "西北陕甘宁青地区民居，夯土筑墙、平顶设计，就地取材，厚墙保暖隔热，平顶可晾晒粮食，适配西北干旱少雨、风沙大的气候，1911年前为西北平民的主流居住形式。" 
+                },
+                { 
+                    name: "满族口袋房", 
+                    period: "清", 
+                     img:"./images/满族口袋房.webp", 
+                    desc: "东北满族传统民居，木构架结构，青砖或土坯筑墙，坐北朝南，三间房呈“口袋”状，西屋为贵、南炕为尊，火炕取暖，适配东北严寒漫长的气候，1911年前留存于东北辽宁、吉林、黑龙江满族聚居区。" 
+                }
+            ],
+            // 官府-1911年前 省/府/州/县 各级经典
+            guanfu: [
+                { 
+                    name: "平遥县衙", 
+                    period: "北魏始建，明清多次重修", 
+                     img:"./images/平遥县衙.jpg", 
+                    desc: "中国现存最完整的古代县级官署建筑，占地26000平方米，前衙后宅、中轴对称，设大堂（公堂）、二堂（民事审判）、三堂（县官居住），配套牢狱、库房、廨舍、仪门，严格依清代县级官署礼制建造，1911年前为平遥县行政、司法、狱政中心，是明清县衙的活标本。" 
+                },
+                { 
+                    name: "直隶总督署", 
+                    period: "清雍正七年始建", 
+                    img:"./images/直隶总督署.jpg",
+                    desc: "清代最高省级衙署，管辖直隶省（今京津冀、内蒙古南部）军政要务，占地30000平方米，中轴对称、五进院落，砖木结构，庄重威严，是清代省府官署的典范，1911年前为直隶总督办公居所，曾国藩、李鸿章等曾在此任职。" 
+                },
+                { 
+                    name: "南阳府衙", 
+                    period: "南宋咸淳七年始建，明清重修", 
+                    img:"./images/南阳府衙.webp",
+                    desc: "中国保存最完整的府级官署建筑，历时700余年，占地18000平方米，前衙后宅、中轴对称，设大堂、二堂、三堂，配套官舍、牢狱、库房，是明清府级官署的典型规制，1911年前为南阳府行政司法中心，是研究古代府衙制度的重要实物。" 
+                },
+                { 
+                    name: "淮安府衙", 
+                    period: "明洪武三年始建，明清重修", 
+                    img:"./images/淮安府衙.jpg",
+                    desc: "江苏省现存规模最大的古代府衙，占地50000平方米，中轴对称、六进院落，砖木结构，布局严谨，设大堂、二堂、漕运堂（专理漕运），因淮安为漕运重镇，衙署兼具行政与漕运管理功能，1911年前为淮安府行政中心。" 
+                },
+                { 
+                    name: "保定府署", 
+                    period: "明洪武元年始建，清重修", 
+                   img:"./images/保定府署.jpg",
+                    desc: "华北地区保存完好的府级官署，占地13000平方米，中轴对称、四进院落，砖木结构，威仪庄严，设大堂、二堂、花厅，配套廨舍、牢狱，1911年前为保定府行政司法中心，是清代华北府衙的代表。" 
+                },
+                { 
+                    name: "汀州府衙", 
+                    period: "唐大历四年始建，明清重修", 
+                   img:"./images/汀州府衙.jpg",
+                    desc: "福建客家地区现存最完整的府衙，占地10000平方米，中轴对称、三进院落，砖木结构，融合客家建筑特色，1911年前为汀州府（今龙岩、三明）行政中心，是研究客家地区官式建筑的重要实物。" 
+                },
+                { 
+                    name: "新绛州衙", 
+                    period: "唐始建，明清重修", 
+                    img:"./images/新绛州衙.jpg",
+                    desc: "中国现存完整的古代州级官署建筑，占地16000平方米，依山而建、中轴对称，设大堂、二堂、州衙花园，砖木结构，适配山西绛州山地地形，1911年前为绛州（今新绛）行政司法中心，是明清州衙的典范。" 
+                },
+                { 
+                    name: "代县州衙", 
+                    period: "明洪武二年始建，清重修", 
+                    img:"./images/代县州衙.jpg",
+                    desc: "山西雁门关下的州级官署，兼具行政与军事功能，占地12000平方米，中轴对称，设大堂、武备堂，高墙深院，防御性强，适配雁门关军事重镇的特点，1911年前为代州行政军事中心。" 
+                },
+                { 
+                    name: "内乡县衙", 
+                    period: "元大德八年始建，明清重修", 
+                    img:"./images/内乡县衙.webp",
+                    desc: "中国现存四大古县衙之一，占地47000平方米，中轴对称、五进院落，砖木结构，砖雕木雕精美，配套牢狱、库房、官舍，1911年前为内乡县行政司法中心，其“官箴碑”为古代官德教育的重要文物。" 
+                },
+                { 
+                    name: "霍州署衙", 
+                    period: "唐始建，元明清重修", 
+                    img:"./images/霍州署衙.jpg", 
+                    desc: "中国现存唯一保存完整的元代州衙，占地38000平方米，中轴对称，元代木构架结构保存完好，兼具元、明、清三代建筑特色，1911年前为霍州行政司法中心，是研究元代官式建筑的珍贵实物。" 
+                }
+            ],
+            // 皇宫-1911年前 各朝代经典宫阙/皇宫
+            huanggong: [
+                { 
+                    name: "北京故宫（紫禁城）", 
+                    period: "明永乐十八年始建，明清沿用", 
+                    img:"./images/北京故宫（紫禁城）.jpg", 
+                    desc: "世界现存规模最大、保存最完整的木质结构宫殿建筑群，占地72万平方米，屋宇9000余间，严格依《周礼·考工记》礼制布局，中轴对称、前朝后寝、左祖右社，太和殿为最高等级建筑（重檐庑殿顶、黄琉璃瓦、面阔九间），榫卯斗拱结构精巧，无一颗铁钉，1911年前为明清两代皇宫，是中国古代皇宫建筑的巅峰。" 
+                },
+                { 
+                    name: "沈阳故宫", 
+                    period: "清天命十年始建，清前期皇宫", 
+                    img:"./images/沈阳故宫.jpg", 
+                    desc: "清朝初期皇宫，占地6万平方米，融合满、汉、蒙建筑风格，布局灵活（非严格中轴对称），大政殿为八角攒尖顶，十王亭呈八字排列，适配满族八旗制度，木构架结构，黄琉璃瓦镶绿边（满族特色），1911年前为清盛京皇宫，是中国仅存的两座古代皇宫之一。" 
+                },
+                { 
+                    name: "唐大明宫遗址", 
+                    period: "唐贞观八年始建，唐代皇宫", 
+                    img:"./images/唐大明宫遗址.jpg", 
+                    desc: "唐代长安城核心皇宫，被誉为“千宫之宫”，占地3.2平方公里，是北京故宫的4.5倍，含元殿、麟德殿为核心建筑，麟德殿可容纳千人宴饮，木构架结构，气势恢宏，是唐代宫殿建筑的鼎盛代表，唐末毁于战乱，1911年前仅存遗址，现存夯土台基与柱础。" 
+                },
+                { 
+                    name: "汉未央宫遗址", 
+                    period: "汉高帝七年始建，西汉皇宫", 
+                    img:"./images/汉未央宫遗址.jpg", 
+                    desc: "西汉长安城核心皇宫，占地5平方公里，是中国古代最早的规模化皇宫，未央宫前殿为核心建筑，夯土筑台、木构架为顶，中轴对称，是汉代宫殿建筑的典范，为后世皇宫布局奠定基础，1911年前仅存遗址，是丝绸之路起点的重要组成部分。" 
+                },
+                { 
+                    name: "洛阳紫微城（隋唐洛阳宫）", 
+                    period: "隋大业元年始建，隋唐武周皇宫", 
+                    img:"./images/洛阳紫微城（隋唐洛阳宫）.jpg", 
+                    desc: "隋唐武周时期东都洛阳的皇宫，占地4.2平方公里，紫微城正门应天门为“天下第一门”，双向三出阙，明堂、天堂为核心建筑，木构架结构，气势恢宏，是隋唐宫殿建筑的代表，1911年前仅存遗址，现存明堂、天堂复原建筑。" 
+                },
+                { 
+                    name: "南京明故宫", 
+                    period: "明洪武二十五年始建，明初皇宫", 
+                    img:"./images/南京明故宫.jpg", 
+                    desc: "明朝初期皇宫，占地101.25万平方米，是北京故宫的蓝本，严格中轴对称、前朝后寝，奉天殿为核心建筑，黄琉璃瓦、红墙朱门，木构架结构，明末毁于战乱，1911年前仅存遗址，留存于南京玄武区。" 
+                },
+                { 
+                    name: "清宁宫（沈阳故宫）", 
+                    period: "清天命十年始建，清代后妃宫", 
+                    img:"./images/清宁宫（沈阳故宫）.jpg", 
+                    desc: "沈阳故宫后寝核心建筑，满族特色皇宫建筑，口袋房、万字炕、烟囱立在地面上，砖木结构，坐北朝南，是清代初期皇后、妃嫔的居住场所，1911年前为清盛京皇宫后寝，保存完整，是满族皇宫建筑的代表。" 
+                },
+                { 
+                    name: "太和殿（北京故宫）", 
+                    period: "明永乐十八年始建，清康熙重修", 
+                    img:"./images/太和殿（北京故宫）.jpg", 
+                    desc: "北京故宫核心建筑，皇帝举行大典（登基、大婚、祭天）的场所，中国古代建筑最高等级，重檐庑殿顶、黄琉璃瓦、面阔九间、进深五间，合“九五之尊”，殿内蟠龙金柱，藻井精美，木构架结构，1911年前为明清皇权的象征，保存完整。" 
+                },
+                { 
+                    name: "乾清宫（北京故宫）", 
+                    period: "明永乐十八年始建，明清重修", 
+                    img:"./images/乾清宫（北京故宫）.jpg", 
+                    desc: "北京故宫内廷正殿，明清皇帝日常理政、居住的场所，面阔九间、进深五间，重檐歇山顶，殿内“正大光明”匾为清代秘密立储的藏匾处，木构架结构，1911年前为明清皇帝的核心居所，保存完整。" 
+                }
+                            ],
+            // 桥梁-1911年前 石拱/木梁/浮桥/廊桥 全类型经典
+            qiaoliang: [
+                { 
+                    name: "赵州桥（安济桥）", 
+                    period: "隋开皇十五年至大业元年（595-605年）始建", 
+                    img:"./images/赵州桥.jpg", 
+                    desc: "世界现存最早、保存最完整的敞肩石拱桥，由李春设计建造，横跨洨河，全长50.82米，跨径37.02米，拱高7.23米，采用“敞肩拱”技术（大拱两侧设小拱），减轻桥身重量、增加泄洪能力，石材为青白石，榫卯拼接，历经1400余年、8次地震、无数次洪水仍完好使用，1911年前一直为赵州（今赵县）交通要道，是中国古代石拱桥的巅峰之作。" 
+                },
+                { 
+                    name: "卢沟桥（芦沟桥）", 
+                    period: "金大定二十九年始建，明昌三年完工，明清重修", 
+                    img:"./images/卢沟桥.jpg", 
+                    desc: "北京现存最古老的石造联拱桥，横跨永定河，全长266.5米，宽7.5米，11孔联拱，桥面两侧有石栏，栏柱上雕刻石狮501只（大小不一、形态各异），石材为汉白玉，1937年“卢沟桥事变”发生地，1911年前为北京西南交通要道，是金代石拱桥的代表。" 
+                },
+                { 
+                    name: "洛阳桥（万安桥）", 
+                    period: "北宋皇祐五年始建，嘉祐四年完工，明清重修", 
+                    img:"./images/洛阳桥.jpg", 
+                    desc: "中国首座跨海梁式石桥，横跨泉州洛阳江入海口，全长834米，宽7米，采用“筏型基础”（抛石成基）、“种蛎固基”（养殖牡蛎加固桥基）等首创技术，解决跨海建桥难题，石材为花岗岩，1911年前为泉州海上丝绸之路的重要通道，是宋代桥梁工程的典范。" 
+                },
+                { 
+                    name: "广济桥（湘子桥）", 
+                    period: "南宋乾道七年始建，明清重修", 
+                    img:"./images/广济桥.jpg", 
+                    desc: "中国唯一的浮梁结合桥，横跨潮州韩江，全长518米，由24座石梁桥和18艘浮船组成，白天浮船连接成桥通行，夜晚解开浮船放航，兼具梁桥与浮桥优势，石材为花岗岩，1911年前为潮州交通要道，是古代桥梁因地制宜的经典。" 
+                },
+                { 
+                    name: "宝带桥", 
+                    period: "唐元和十一年始建，明清重修", 
+                    img:"./images/宝带桥.jpg", 
+                    desc: "中国现存最长的多孔石拱桥，横跨苏州京杭大运河，全长317米，53孔联拱，桥身低平（适应漕运船只通行），石材为花岗岩，1911年前为苏州漕运要道，是唐代石拱桥的代表，兼具交通与泄洪功能。" 
+                },
+                { 
+                    name: "安平桥（五里桥）", 
+                    period: "南宋绍兴八年始建，绍兴二十二年完工", 
+                    img:"./images/安平桥.jpg", 
+                    desc: "世界现存最长的古代梁式石桥，横跨泉州安海湾，全长2255米，宽3-3.8米，有“天下无桥长此桥”之称，采用花岗岩条石铺砌，筏型基础，1911年前为泉州海上贸易的重要通道，是宋代跨海梁桥的巅峰。" 
+                },
+                { 
+                    name: "程阳永济桥（程阳风雨桥）", 
+                    period: "民国元年（1911年）始建（补充：虽始建于1911年，属清末民初交界，为侗族廊桥经典）", 
+                    img:"./images/程阳永济桥.jpg", 
+                    desc: "侗族木构廊桥代表，横跨三江林溪河，全长64.4米，宽3.4米，木质榫卯结构（无一颗铁钉），桥身设廊、亭、塔，兼具交通、避雨、休憩功能，融合侗族建筑艺术与实用功能，是1911年前后侗族桥梁的典范，保存完整。" 
+                },
+                { 
+                    name: "五亭桥（莲花桥）", 
+                    period: "清乾隆二十二年始建", 
+                    img:"./images/五亭桥.jpg", 
+                    desc: "扬州瘦西湖标志性桥梁，融合亭与桥的特色，全长55.3米，桥身设五座亭子，桥洞15个（满月时可看到15个月亮倒影），砖木石混合结构，1911年前为扬州园林桥梁的代表，兼具美学与交通功能。" 
+                },
+                { 
+                    name: "灞桥", 
+                    period: "隋开皇三年始建，明清重修", 
+                    img:"./images/灞桥.jpg", 
+                    desc: "西安古长安东大门的标志性桥梁，横跨灞河，木质梁桥（明清改为石梁），是古代送别友人的“折柳赠别”之地，文化意义深远，1911年前为西安城东交通要道，是隋唐桥梁与文化融合的代表。" 
+                },
+                { 
+                    name: "风雨桥（侗族）", 
+                    period: "明至清", 
+                    img:"./images/侗族风雨桥.jpg", 
+                    desc: "黔桂湘侗族地区经典木构廊桥，全长50-100米不等，木质榫卯结构，桥身设廊、栏、亭，彩绘装饰，适配侗族山区多雨的气候，兼具交通、避雨、社交功能，1911年前广泛留存于侗族聚居区，是少数民族桥梁的代表。" 
+                }
+            ]
+        };
+
+
+        // 识图游戏数据
+        const gameData = [
+            { img: "./images/北京四合院.jpg", name: "北京四合院", options: ["北京四合院", "徽派民居", "福建土楼", "陕北窑洞"] },
+            { img: "./images/北京故宫（紫禁城）.jpg", name: "北京故宫", options: ["北京故宫", "沈阳故宫", "大明宫", "承德避暑山庄"] },
+            { img: "./images/赵州桥.jpg", name: "赵州桥", options: ["赵州桥", "卢沟桥", "洛阳桥", "广济桥"] },
+            { img: "./images/平遥县衙.jpg", name: "平遥县衙", options: ["平遥县衙", "直隶总督署", "南阳府衙", "丽江木府"] },
+            { img: "./images/徽派民居.jpg", name: "徽派民居", options: ["徽派民居", "江南水乡民居", "晋商大院", "岭南骑楼"] },
+            { img: "./images/福建土楼.webp", name: "福建土楼", options: ["福建土楼", "客家围龙屋", "云南一颗印", "满族口袋房"] },
+            { img: "./images/卢沟桥.jpg", name: "卢沟桥", options: ["卢沟桥", "宝带桥", "五亭桥", "灞桥"] },
+            { img: "./images/洛阳桥.jpg", name: "洛阳桥", options: ["洛阳桥", "安平桥", "广济桥", "双龙桥"] },
+            { img: "./images/沈阳故宫.jpg", name: "沈阳故宫", options: ["沈阳故宫", "北京故宫", "华清宫", "兴庆宫"] },
+            { img: "./images/程阳永济桥.jpg", name: "程阳永济桥", options: ["程阳永济桥", "赵州桥", "五亭桥", "宝带桥"] }
+        ];
+
+        // 全局变量
+        let currentGameLevel = 1;
+        let currentGameScore = 0;
+        let isAIResponding = false;
+
+        // 页面加载完成后初始化
+        window.onload = function() {
+            // 初始化各板块卡片
+            initBuildingCards('minju', buildingData.minju);
+            initBuildingCards('guanfu', buildingData.guanfu);
+            initBuildingCards('huanggong', buildingData.huanggong);
+            initBuildingCards('qiaoliang', buildingData.qiaoliang);
+            
+            // 初始化首页精选卡片
+            initBuildingCards('home', buildingData.home);
+            
+            // 默认显示首页
+            switchSection('home');
+        };
+
+        // 初始化建筑卡片
+        function initBuildingCards(sectionId, data) {
+            const container = document.getElementById(`${sectionId}-card-container`);
+            if (!container) return;
+            
+            container.innerHTML = '';
+            data.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => openModal(item);
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="card-img-tooltip">${item.name}（${item.period}）</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>${item.name}</h3>
+                        <p>始建/沿用时期：${item.period}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 切换板块
+        function switchSection(sectionId) {
+            // 隐藏所有板块
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // 显示目标板块
+            document.getElementById(sectionId).classList.add('active');
+            
+            // 更新导航按钮状态
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.onclick.toString().includes(sectionId)) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // 控制搜索栏显示：仅首页/民居/官府/皇宫/桥梁显示，搜索结果/知识课堂/互动学习隐藏
+            const searchContainer = document.getElementById('searchContainer');
+            if (['home', 'minju', 'guanfu', 'huanggong', 'qiaoliang'].includes(sectionId)) {
+                searchContainer.style.display = 'block';
+            } else {
+                searchContainer.style.display = 'none';
+            }
+        }
+
+        // 切换知识课堂标签页
+        function switchKnowledgeTab(tabId) {
+            // 隐藏所有内容
+            document.querySelectorAll('.knowledge-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // 显示目标内容
+            document.getElementById(tabId).classList.add('active');
+            
+            // 更新标签按钮状态
+            document.querySelectorAll('.knowledge-tab').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.onclick.toString().includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // 打开详情弹窗
+        function openModal(building) {
+            const modal = document.getElementById('detail-modal');
+            document.getElementById('modal-title').textContent = building.name;
+            document.getElementById('modal-img').src = building.img;
+            document.getElementById('modal-period').textContent = `始建/沿用时期：${building.period}`;
+            document.getElementById('modal-desc').textContent = building.desc;
+            
+            modal.classList.add('active');
+            // 禁止背景滚动
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭详情弹窗
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            modal.classList.remove('active');
+            // 恢复背景滚动
+            document.body.style.overflow = 'auto';
+        }
+
+        // 关闭弹窗（点击外部）
+        window.onclick = function(event) {
+            const modal = document.getElementById('detail-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        // 搜索建筑
+        function searchBuildings() {
+            const searchText = document.getElementById('searchInput').value.trim().toLowerCase();
+            const resultTip = document.getElementById('searchResultTip');
+            
+            if (!searchText) {
+                resultTip.textContent = '请输入搜索关键词';
+                resultTip.classList.remove('highlight');
+                return;
+            }
+            
+            // 整合所有建筑数据
+            const allBuildings = [
+                ...buildingData.minju,
+                ...buildingData.guanfu,
+                ...buildingData.huanggong,
+                ...buildingData.qiaoliang
+            ];
+            
+            // 筛选匹配结果（名称/类型/时期/描述）
+            const matchedBuildings = allBuildings.filter(building => {
+                return building.name.toLowerCase().includes(searchText) ||
+                       building.period.toLowerCase().includes(searchText) ||
+                       (building.type && building.type.toLowerCase().includes(searchText)) ||
+                       building.desc.toLowerCase().includes(searchText);
+            });
+            
+            // 更新提示
+            resultTip.textContent = `找到 ${matchedBuildings.length} 个相关建筑`;
+            resultTip.classList.add('highlight');
+            
+            // 渲染搜索结果
+            const resultContainer = document.getElementById('search-result-container');
+            resultContainer.innerHTML = '';
+            
+            if (matchedBuildings.length === 0) {
+                resultContainer.innerHTML = '<div style="text-align:center; padding:2rem; color:#666;">未找到相关建筑，请更换关键词重试</div>';
+            } else {
+                matchedBuildings.forEach(building => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.onclick = () => openModal(building);
+                    card.innerHTML = `
+                        <div class="card-img-wrapper">
+                            <img src="${building.img}" alt="${building.name}">
+                            <div class="card-img-tooltip">${building.name}（${building.period}）</div>
+                        </div>
+                        <div class="card-body">
+                            <h3>${building.name}</h3>
+                            <p>始建/沿用时期：${building.period}</p>
+                        </div>
+                    `;
+                    resultContainer.appendChild(card);
+                });
+            }
+            
+            // 切换到搜索结果板块
+            switchSection('search-result');
+        }
+
+        // 清空搜索
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResultTip').textContent = '输入关键词开始搜索';
+            document.getElementById('searchResultTip').classList.remove('highlight');
+        }
+
+        // 搜索栏回车触发
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            // 修复：仅在按下回车键时触发搜索，避免输入过程中跳转
+            if (e.key === 'Enter') {
+                searchBuildings();
+            }
+        });
+
+        // 检查答题结果
+        function checkQuiz() {
+            let score = 0;
+            const totalQuestions = 7;
+            
+            // 检查每题答案
+            if (document.querySelector('input[name="q1"][value="1"]')?.checked) score++;
+            if (document.querySelector('input[name="q2"][value="1"]')?.checked) score++;
+            if (document.querySelector('input[name="q3"][value="1"]')?.checked) score++;
+            if (document.querySelector('input[name="q4"][value="1"]')?.checked) score++;
+            if (document.querySelector('input[name="q5"][value="1"]')?.checked) score++;
+            if (document.querySelector('input[name="q6"][value="1"]')?.checked) score++;
+            if (document.querySelector('input[name="q7"][value="1"]')?.checked) score++;
+            
+            // 显示结果
+            const resultEl = document.getElementById('quiz-result');
+            const accuracy = (score / totalQuestions) * 100;
+            
+            if (accuracy === 100) {
+                resultEl.style.background = '#d4edda';
+                resultEl.style.color = '#155724';
+                resultEl.textContent = `满分！🎉 你答对了${score}/${totalQuestions}题，掌握了所有建筑知识点！`;
+            } else if (accuracy >= 70) {
+                resultEl.style.background = '#d1ecf1';
+                resultEl.style.color = '#0c5460';
+                resultEl.textContent = `很棒！👍 你答对了${score}/${totalQuestions}题，继续加油！`;
+            } else if (accuracy >= 40) {
+                resultEl.style.background = '#fff3cd';
+                resultEl.style.color = '#856404';
+                resultEl.textContent = `不错哦！🤔 你答对了${score}/${totalQuestions}题，再巩固一下知识点吧！`;
+            } else {
+                resultEl.style.background = '#f8d7da';
+                resultEl.style.color = '#721c24';
+                resultEl.textContent = `继续努力！💪 你答对了${score}/${totalQuestions}题，多看看知识课堂哦！`;
+            }
+        }
+
+        // 开始识图游戏
+        function startGame() {
+            if (currentGameLevel > 10) {
+                document.getElementById('game-feedback').textContent = '恭喜通关！🎉';
+                document.getElementById('game-result').style.display = 'block';
+                document.getElementById('game-result').style.background = '#d4edda';
+                document.getElementById('game-result').style.color = '#155724';
+                document.getElementById('game-result').textContent = `恭喜！你最终得分：${currentGameScore}分，完成所有关卡！`;
+                return;
+            }
+            
+            // 重置反馈
+            document.getElementById('game-feedback').textContent = '';
+            document.getElementById('game-result').style.display = 'none';
+            
+            // 获取当前关卡数据
+            const currentGame = gameData[currentGameLevel - 1];
+            
+            // 更新图片
+            document.getElementById('game-img').src = currentGame.img;
+            
+            // 渲染选项
+            const optionsContainer = document.getElementById('game-options');
+            optionsContainer.innerHTML = '';
+            
+            currentGame.options.forEach(option => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'game-option';
+                optionEl.textContent = option;
+                optionEl.onclick = () => checkGameAnswer(option, currentGame.name);
+                optionsContainer.appendChild(optionEl);
+            });
+            
+            // 更新关卡显示
+            document.getElementById('game-level').textContent = currentGameLevel;
+        }
+
+        // 检查游戏答案
+        function checkGameAnswer(selectedOption, correctAnswer) {
+            const options = document.querySelectorAll('.game-option');
+            const feedback = document.getElementById('game-feedback');
+            
+            // 禁用所有选项
+            options.forEach(option => {
+                option.onclick = null;
+                if (option.textContent === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (option.textContent === selectedOption && selectedOption !== correctAnswer) {
+                    option.classList.add('wrong');
+                }
+            });
+            
+            // 反馈结果
+            if (selectedOption === correctAnswer) {
+                currentGameScore += 10;
+                feedback.style.color = '#28a745';
+                feedback.textContent = '答对了！🎉 +10分';
+            } else {
+                feedback.style.color = '#dc3545';
+                feedback.textContent = `答错了😞 正确答案是：${correctAnswer}`;
+            }
+            
+            // 更新分数
+            document.getElementById('game-score').textContent = currentGameScore;
+            
+            // 进入下一关（延迟1.5秒）
+            setTimeout(() => {
+                currentGameLevel++;
+                startGame();
+            }, 1500);
+        }
+
+        // 重置游戏
+        function resetGame() {
+            currentGameLevel = 1;
+            currentGameScore = 0;
+            document.getElementById('game-score').textContent = 0;
+            document.getElementById('game-level').textContent = 1;
+            document.getElementById('game-feedback').textContent = '';
+            document.getElementById('game-result').style.display = 'none';
+            
+            // 重置选项样式
+            document.querySelectorAll('.game-option').forEach(option => {
+                option.classList.remove('correct', 'wrong');
+            });
+            
+            startGame();
+        }
+
+        // 发送快捷问题
+        function sendQuickQuestion(question) {
+            document.getElementById('chatInput').value = question;
+            sendChatMessage();
+        }
+
+        // 发送AI问答消息
+        function sendChatMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const chatContainer = document.getElementById('chatContainer');
+            const sendBtn = document.getElementById('chatSendBtn');
+            const message = chatInput.value.trim();
+            
+            if (!message || isAIResponding) return;
+            
+            // 禁用发送按钮
+            isAIResponding = true;
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '<span class="loading-indicator"></span> 思考中...';
+            
+            // 添加用户消息
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user-message';
+            userMessage.innerHTML = `
+                <div>${message}</div>
+                <div class="message-time">${new Date().toLocaleTimeString()}</div>
+            `;
+            chatContainer.appendChild(userMessage);
+            
+            // 清空输入框
+            chatInput.value = '';
+            
+            // 滚动到底部
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // 模拟AI回复（实际项目可替换为真实API调用）
+            setTimeout(() => {
+                const aiReply = getAIReply(message);
+                
+                // 添加AI消息
+                const aiMessage = document.createElement('div');
+                aiMessage.className = 'chat-message ai-message';
+                aiMessage.innerHTML = `
+                    <div>${aiReply}</div>
+                    <div class="message-time">${new Date().toLocaleTimeString()}</div>
+                `;
+                chatContainer.appendChild(aiMessage);
+                
+                // 滚动到底部
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                // 启用发送按钮
+                isAIResponding = false;
+                sendBtn.disabled = false;
+                sendBtn.textContent = '发送';
+            }, 1000 + Math.random() * 1000);
+        }
+
+        // AI回复逻辑（扩展知识库，优化回复精准度）
+        function getAIReply(question) {
+            const q = question.toLowerCase();
+            
+            // 核心结构相关
+            if (q.includes('核心结构') || q.includes('木构架') || q.includes('斗拱') || q.includes('榫卯')) {
+                return `中国古代建筑的核心结构以木构架为基础，主要包含：
+1. 木构架：分抬梁式（北方主流，层层抬梁承托屋顶）、穿斗式（南方主流，穿枋串联柱子）、井干式（林区原木堆叠）；
+2. 斗拱：特有的承重构件，将屋顶重量传导至立柱，兼具装饰与抗震功能；
+3. 榫卯：木构件连接方式，无需钉子，可承受各种外力；
+4. 飞檐：屋檐上翘，增加采光、利于排水，兼具美学价值；
+5. 藻井：天花板中央装饰结构，多为八角形/圆形，常见于宫殿核心位置。`;
+            }
+            
+            // 四合院相关
+            else if (q.includes('四合院') || q.includes('北京民居')) {
+                return `北京四合院是北方汉民族合院式民居典范，核心特点：
+1. 布局：中轴对称、坐北朝南，分进院落、尊卑有序；
+2. 结构：木构架结构，青砖灰瓦，适配北方寒冷干燥气候；
+3. 功能：围合式布局兼顾私密性与家族聚居；
+4. 礼制：东厢为长、西厢为少，南房为仆役居住，体现传统家族等级。`;
+            }
+            
+            // 赵州桥相关
+            else if (q.includes('赵州桥') || q.includes('安济桥') || q.includes('石拱桥')) {
+                return `赵州桥（安济桥）由隋代李春设计建造，核心创新：
+1. 敞肩拱设计：两侧设小拱，减轻桥身自重、增加泄洪能力；
+2. 单孔坦拱：跨径37.02米，桥面平缓，便于通行；
+3. 石材榫卯：石块间用榫卯连接，无需砂浆，坚固耐用；
+4. 历史价值：世界现存最早、保存最完整的敞肩石拱桥，历经1400余年仍在使用。`;
+            }
+            
+            // 故宫相关
+            else if (q.includes('故宫') || q.includes('紫禁城') || q.includes('皇宫')) {
+                return `故宫（紫禁城）的建筑礼制体现在：
+1. 布局：中轴对称、前朝后寝，外朝（太和殿/中和殿/保和殿）处理政务，内廷（乾清宫/交泰殿/坤宁宫）居住；
+2. 等级：黄琉璃瓦（最高等级）、红墙朱柱，屋顶形式（太和殿重檐庑殿顶为最高）；
+3. 象征：九龙壁、龙凤纹饰体现皇权至上，“左祖右社”符合礼制规范；
+4. 规模：占地72万平方米，9000余间房屋，严格遵循“天子之居”的规制。`;
+            }
+            
+            // 福建土楼相关
+            else if (q.includes('土楼') || q.includes('福建民居')) {
+                return `福建土楼多为圆形的核心原因：
+1. 防御性：圆形无死角，易守难攻，可抵御盗匪、战乱；
+2. 结构：圆形受力均匀，抗风抗震能力强；
+3. 文化：体现客家“聚族而居”的理念，无主次之分，家族平等；
+4. 实用：环形布局便于通风采光，内部交通便捷。`;
+            }
+            
+            // 斗拱vs榫卯相关
+            else if (q.includes('斗拱') && q.includes('榫卯') || q.includes('区别')) {
+                return `斗拱和榫卯的核心区别：
+1. 功能：榫卯是木构件的连接方式（基础工艺），斗拱是承重构件（结构部件）；
+2. 位置：榫卯遍布整个木构架，斗拱仅位于立柱与横梁/屋顶之间；
+3. 作用：榫卯保证构件连接牢固，斗拱传导屋顶重量+抗震+装饰；
+4. 关系：斗拱的构件之间通过榫卯连接，榫卯是斗拱的组成工艺。`;
+            }
+            
+            // 地域民居差异相关
+            else if (q.includes('地域') && q.includes('民居') || q.includes('差异')) {
+                return `不同地域民居的核心差异（1911年前）：
+1. 北方（四合院/窑洞）：厚墙、封闭、保暖，适配寒冷干燥；
+2. 南方（徽派/水乡）：通透、天井、通风，适配高温多雨；
+3. 西南（吊脚楼/竹楼）：干栏式、架空，适配潮湿多山；
+4. 西北（土房/窑洞）：夯土、平顶，适配干旱少雨；
+5. 福建（土楼）：巨型夯土、围合，适配防御需求。`;
+            }
+            
+            // 古代桥梁类型相关
+            else if (q.includes('桥梁') && q.includes('类型') || q.includes('种类')) {
+                return `中国古代桥梁（1911年前）主要类型：
+1. 石拱桥：赵州桥（敞肩拱）、卢沟桥（联拱），坚固耐用；
+2. 石梁桥：洛阳桥（跨海）、安平桥（最长），结构简单；
+3. 浮桥：广济桥（启闭式），可开合通船；
+4. 木桥：程阳永济桥（风雨桥），榫卯连接，设廊遮雨；
+5. 园林桥：五亭桥，融合景观与交通功能。`;
+            }
+            
+            // 通用回复
+            else {
+                return `关于“${question}”的相关知识：
+中国古代建筑（1911年前）以木构架为核心，遵循“天人合一”理念，不同类型（民居/官府/皇宫/桥梁）各有特色：
+- 民居：因地制宜，地域特色鲜明；
+- 官府：等级森严，中轴对称；
+- 皇宫：礼制极致，气势恢宏；
+- 桥梁：工程精湛，实用与艺术结合。
+如需更精准的解答，可以尝试提问：“XX建筑的结构特点？”“XX地区民居的特色？”等具体问题。`;
+            }
+        }
+
+        // 聊天输入框回车触发
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault(); // 阻止换行
+                sendChatMessage();
+            }
+        });
+    </script>
+</body>
+</html>
