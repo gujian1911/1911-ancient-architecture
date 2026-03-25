@@ -665,10 +665,14 @@
         }
 
         .message-time {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-top: 0.5rem;
-        }
+                font-size: 0.8rem;
+                opacity: 0.7;
+                margin-top: 0.5rem;
+                /* 新增优化 */
+                text-align: right;    /* 时间右对齐，更符合聊天UI习惯 */
+                color: #666;          /* 给时间加浅灰色，比opacity更稳定（不会被父元素透明度影响） */
+                line-height: 1.2;     /* 行高优化，避免时间行过高 */
+}
 
         .chat-input-container {
             display: flex;
@@ -1259,7 +1263,15 @@
                 <!-- 欢迎消息 -->
                 <div class="chat-message ai-message">
                     <div>你好！我是中国古代建筑知识AI助手，有任何关于古代民居、官府、皇宫、桥梁的问题都可以问我哦！</div>
-                    <div class="message-time">${new Date().toLocaleTimeString()}</div>
+                    <div class="message-time" id="messageTime"></div>
+                    <script>
+  // 定义更新时间的函数
+  function updateTime() {
+  const timeEl = document.getElementById('messageTime');
+  if (!timeEl) return; // 找不到元素就不执行，不会报错
+  timeEl.textContent = new Date().toLocaleTimeString();
+}
+</script>
                 </div>
             </div>
             <div class="chat-input-container">
@@ -1269,92 +1281,137 @@
         </div>
     </section>
 
-        <!-- 互动学习板块 - 重构为标签页样式 -->
-        <section id="quiz" class="page-section">
-            <h2>🧠 互动学习</h2>
-            
-            <!-- 互动学习主容器 -->
-            <div class="quiz-box">
-                <!-- 互动学习子标签页：识图在前，问答在后 -->
-                <div class="interactive-tabs">
-                    <button class="interactive-tab active" onclick="switchInteractiveTab('game-content')">建筑识图游戏</button>
-                    <button class="interactive-tab" onclick="switchInteractiveTab('quiz-content')">建筑知识问答</button>
-                </div>
+       <!-- 互动学习板块 - 重构为标签页样式 -->
+<section id="quiz" class="page-section">
+    <h2>🧠 互动学习</h2>
     
-                <!-- 识图游戏内容 → 默认显示 -->
-                <div class="interactive-content active" id="game-content">
-                    <h3 style="color: #8B4513; margin-bottom: 1.5rem; text-align: center;">🎮 建筑识图小游戏</h3>
-                    <div class="game-header">
-                        <div class="game-score">当前得分：<span id="game-score">0</span> 分</div>
-                        <div class="game-score">当前关卡：<span id="game-level">1</span>/10</div>
-                    </div>
-                    
-                    <div class="game-img-container">
-                        <img id="game-img" class="game-img" src="images/游戏.jpg" alt="建筑识图">
-                    </div>
-                    
-                    <div class="game-feedback" id="game-feedback"></div>
-                    
-                    <div class="game-options" id="game-options"></div>
-                    
-                    <div class="game-controls">
-                        <button class="game-btn" onclick="startGame()">开始游戏</button>
-                        <button class="game-btn" onclick="resetGame()">重置游戏</button>
-                    </div>
-                    
-                    <div id="game-result" class="game-result" style="display: none;"></div>
-                </div>
-    
-                <!-- 答题内容 → 默认隐藏 -->
-                <div class="interactive-content" id="quiz-content">
-                    <h3 style="color: #8B4513; margin-bottom: 1.5rem; text-align: center;">📖 建筑知识问答</h3>
-                    <div class="quiz-item">
-                        <p>1. 世界现存最早的敞肩石拱桥是？</p>
-                        <div class="quiz-option"><label><input type="radio" name="q1" value="0"> 卢沟桥</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q1" value="1"> 赵州桥</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q1" value="0"> 洛阳桥</label></div>
-                    </div>
-                    <div class="quiz-item">
-                        <p>2. 白墙黛瓦、马头墙是哪种民居的典型特征？</p>
-                        <div class="quiz-option"><label><input type="radio" name="q2" value="0"> 北京四合院</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q2" value="1"> 徽派民居</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q2" value="0"> 福建土楼</label></div>
-                    </div>
-                    <div class="quiz-item">
-                        <p>3. 中国现存规模最大、保存最完整的皇宫是？</p>
-                        <div class="quiz-option"><label><input type="radio" name="q3" value="1"> 北京故宫</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q3" value="0"> 沈阳故宫</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q3" value="0"> 唐大明宫</label></div>
-                    </div>
-                    <div class="quiz-item">
-                        <p>4. 中国现存最完整的古代县衙是？</p>
-                        <div class="quiz-option"><label><input type="radio" name="q4" value="1"> 平遥县衙</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q4" value="0"> 南阳府衙</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q4" value="0"> 直隶总督署</label></div>
-                    </div>
-                    <div class="quiz-item">
-                        <p>5. 以下哪项不属于中国古代木构架结构？</p>
-                        <div class="quiz-option"><label><input type="radio" name="q5" value="0"> 抬梁式</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q5" value="0"> 穿斗式</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q5" value="1"> 拱券式</label></div>
-                    </div>
-                    <div class="quiz-item">
-                        <p>6. 中国首座跨海梁式石桥是？</p>
-                        <div class="quiz-option"><label><input type="radio" name="q6" value="0"> 广济桥</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q6" value="1"> 洛阳桥</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q6" value="0"> 宝带桥</label></div>
-                    </div>
-                    <div class="quiz-item">
-                        <p>7. 福建土楼的主要防御功能是为了抵御？</p>
-                        <div class="quiz-option"><label><input type="radio" name="q7" value="0"> 洪水</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q7" value="1"> 盗匪与战乱</label></div>
-                        <div class="quiz-option"><label><input type="radio" name="q7" value="0"> 野兽</label></div>
-                    </div>
-                    <button class="quiz-btn" onclick="checkQuiz()">提交答案</button>
-                    <div id="quiz-result"></div>
-                </div>
+    <!-- 互动学习主容器 -->
+    <div class="quiz-box">
+        <!-- 互动学习子标签页：识图 → 拼图 → 问答 -->
+        <div class="interactive-tabs">
+            <button class="interactive-tab active" onclick="switchInteractiveTab('game-content')">建筑识图游戏</button>
+            <button class="interactive-tab" onclick="switchInteractiveTab('puzzle-content')">🏗️ 建筑拼图游戏</button>
+            <button class="interactive-tab" onclick="switchInteractiveTab('quiz-content')">建筑知识问答</button>
+        </div>
+
+        <!-- 识图游戏内容 → 默认显示 -->
+        <div class="interactive-content active" id="game-content">
+            <h3 style="color: #8B4513; margin-bottom: 1.5rem; text-align: center;">🎮 建筑识图小游戏</h3>
+            <div class="game-header">
+                <div class="game-score">当前得分：<span id="game-score">0</span> 分</div>
+                <div class="game-score">当前关卡：<span id="game-level">1</span>/10</div>
             </div>
-        </section>
+            
+            <div class="game-img-container">
+                <img id="game-img" class="game-img" src="images/游戏.jpg" alt="建筑识图">
+            </div>
+            
+            <div class="game-feedback" id="game-feedback"></div>
+            
+            <div class="game-options" id="game-options"></div>
+            
+            <div class="game-controls">
+                <button class="game-btn" onclick="startGame()">开始游戏</button>
+                <button class="game-btn" onclick="resetGame()">重置游戏</button>
+            </div>
+            
+            <div id="game-result" class="game-result" style="display: none;"></div>
+        </div>
+
+      <!-- 新增：建筑拼图游戏 → 默认隐藏 -->
+<div class="interactive-content" id="puzzle-content">
+    <h3 style="color: #8B4513; margin-bottom: 1.5rem; text-align: center;">🏗️ 建筑拼图游戏（3图可玩）</h3>
+    <div style="text-align:center; margin-bottom:1rem; font-size:1.1rem;">
+        拖动碎片到正确位置，完成拼图！
+    </div>
+
+    <!-- 图片切换按钮 -->
+    <div style="text-align:center; margin-bottom:1rem;">
+        <button class="game-btn" onclick="changePuzzleImage('gugong')" style="margin:0 3px;">故宫</button>
+        <button class="game-btn" onclick="changePuzzleImage('zhaozhou')" style="margin:0 3px;">赵州桥</button>
+        <button class="game-btn" onclick="changePuzzleImage('tulou')" style="margin:0 3px;">福建土楼</button>
+    </div>
+
+    <!-- 拼图容器 -->
+    <div id="puzzle-container" style="
+        width: 450px; 
+        height: 450px; 
+        margin: 0 auto 20px; 
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 2px;
+        background: #8B4513;
+        padding: 2px;
+        border-radius: 8px;
+    "></div>
+
+    <!-- 拼图控制 -->
+    <div style="text-align:center; margin-bottom:1rem;">
+        <button class="game-btn" onclick="initPuzzle()" style="margin:0 5px;">开始/打乱</button>
+        <button class="game-btn" onclick="resetPuzzle()" style="margin:0 5px;">重置拼图</button>
+    </div>
+
+    <!-- 拼图提示 -->
+    <div id="puzzle-result" style="
+        text-align:center; 
+        font-size:1.3rem; 
+        font-weight:bold; 
+        min-height:2rem;
+        color:#8B4513;
+    "></div>
+</div>
+
+        <!-- 答题内容 → 默认隐藏 -->
+        <div class="interactive-content" id="quiz-content">
+            <h3 style="color: #8B4513; margin-bottom: 1.5rem; text-align: center;">📖 建筑知识问答</h3>
+            <div class="quiz-item">
+                <p>1. 世界现存最早的敞肩石拱桥是？</p>
+                <div class="quiz-option"><label><input type="radio" name="q1" value="0"> 卢沟桥</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q1" value="1"> 赵州桥</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q1" value="0"> 洛阳桥</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>2. 白墙黛瓦、马头墙是哪种民居的典型特征？</p>
+                <div class="quiz-option"><label><input type="radio" name="q2" value="0"> 北京四合院</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q2" value="1"> 徽派民居</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q2" value="0"> 福建土楼</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>3. 中国现存规模最大、保存最完整的皇宫是？</p>
+                <div class="quiz-option"><label><input type="radio" name="q3" value="1"> 北京故宫</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q3" value="0"> 沈阳故宫</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q3" value="0"> 唐大明宫</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>4. 中国现存最完整的古代县衙是？</p>
+                <div class="quiz-option"><label><input type="radio" name="q4" value="1"> 平遥县衙</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q4" value="0"> 南阳府衙</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q4" value="0"> 直隶总督署</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>5. 以下哪项不属于中国古代木构架结构？</p>
+                <div class="quiz-option"><label><input type="radio" name="q5" value="0"> 抬梁式</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q5" value="0"> 穿斗式</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q5" value="1"> 拱券式</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>6. 中国首座跨海梁式石桥是？</p>
+                <div class="quiz-option"><label><input type="radio" name="q6" value="0"> 广济桥</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q6" value="1"> 洛阳桥</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q6" value="0"> 宝带桥</label></div>
+            </div>
+            <div class="quiz-item">
+                <p>7. 福建土楼的主要防御功能是为了抵御？</p>
+                <div class="quiz-option"><label><input type="radio" name="q7" value="0"> 洪水</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q7" value="1"> 盗匪与战乱</label></div>
+                <div class="quiz-option"><label><input type="radio" name="q7" value="0"> 野兽</label></div>
+            </div>
+            <button class="quiz-btn" onclick="checkQuiz()">提交答案</button>
+            <div id="quiz-result"></div>
+        </div>
+    </div>
+</section>
     <!-- 详情弹窗 -->
     <div id="detail-modal" class="modal">
         <div class="modal-content">
@@ -1703,25 +1760,33 @@
             { img: "./images/沈阳故宫.jpg", name: "沈阳故宫", options: ["沈阳故宫", "北京故宫", "承德避暑山庄", "唐大明宫"] },
             { img: "./images/程阳永济桥.jpg", name: "程阳永济桥", options: ["程阳永济桥", "五亭桥", "风雨桥", "泸定桥"] }
         ];
+window.onload = function() {
+    renderCards('minju', buildingData.minju);
+    renderCards('guanfu', buildingData.guanfu);
+    renderCards('huanggong', buildingData.huanggong);
+    renderCards('qiaoliang', buildingData.qiaoliang);
+    
+    // 初始化游戏
+    initGame();
+    
+    // 监听回车键发送聊天
+    document.getElementById('chatInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendChatMessage();
+        }
+    });
 
-        // 初始化页面 - 加载所有建筑卡片
-        window.onload = function() {
-            renderCards('minju', buildingData.minju);
-            renderCards('guanfu', buildingData.guanfu);
-            renderCards('huanggong', buildingData.huanggong);
-            renderCards('qiaoliang', buildingData.qiaoliang);
-            
-            // 初始化游戏
-            initGame();
-            
-            // 监听回车键发送聊天
-            document.getElementById('chatInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    sendChatMessage();
-                }
-            });
-        };
+    // ====================== 新增：搜索框回车搜索 ======================
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            searchBuildings();
+        }
+    });
+    // ================================================================
+};
 
         // 渲染建筑卡片
         function renderCards(type, data) {
@@ -2149,6 +2214,93 @@
                 closeModal();
             }
         };
+// ====================== 升级版：3张图可切换 · 建筑拼图游戏 ======================
+let pieces = [];
+const size = 3;
+let currentImage = "./images/北京故宫（紫禁城）.jpg"; // 默认图
+let dragIndex = null;
+
+// 切换拼图图片
+function changePuzzleImage(type) {
+    switch(type) {
+        case 'gugong': 
+            currentImage = "./images/北京故宫（紫禁城）.jpg"; 
+            break;
+        case 'zhaozhou': 
+            currentImage = "./images/赵州桥.jpg"; 
+            break;
+        case 'tulou': 
+            currentImage = "./images/福建土楼.webp"; 
+            break;
+    }
+    resetPuzzle();
+    initPuzzle();
+}
+
+// 初始化拼图
+function initPuzzle() {
+  const box = document.getElementById("puzzle-container");
+  const tip = document.getElementById("puzzle-result");
+  box.innerHTML = "";
+  tip.textContent = "";
+
+  // 生成 0~8 并打乱
+  pieces = Array.from({length: size*size}, (_,i)=>i);
+  pieces.sort(()=>Math.random()-0.5);
+
+  renderPuzzle();
+}
+
+// 重新渲染
+function renderPuzzle() {
+  const box = document.getElementById("puzzle-container");
+  box.innerHTML = "";
+  pieces.forEach((n, i) => {
+    const d = document.createElement("div");
+    d.style.width = "150px";
+    d.style.height = "150px";
+    d.style.backgroundImage = `url(${currentImage})`;
+    d.style.backgroundSize = "450px 450px";
+    const row = Math.floor(n / size);
+    const col = n % size;
+    d.style.backgroundPosition = `-${col*150}px -${row*150}px`;
+    d.style.border = "1px solid #fff";
+    d.style.cursor = "grab";
+    d.draggable = true;
+    d.dataset.index = i;
+
+    d.addEventListener("dragstart", e=>{
+      dragIndex = i;
+      e.target.style.opacity = 0.5;
+    });
+    d.addEventListener("dragend", e=>e.target.style.opacity=1);
+    d.addEventListener("dragover", e=>e.preventDefault());
+    d.addEventListener("drop", e=>{
+      e.preventDefault();
+      const toIndex = Number(e.target.dataset.index);
+      if(dragIndex===null || dragIndex===toIndex) return;
+      [pieces[dragIndex], pieces[toIndex]] = [pieces[toIndex], pieces[dragIndex]];
+      renderPuzzle();
+      checkWin();
+    });
+    box.appendChild(d);
+  });
+}
+
+// 检查是否拼对
+function checkWin() {
+  const win = pieces.every((v,i)=>v===i);
+  if(win) document.getElementById("puzzle-result").textContent = "✅ 拼图完成！";
+}
+
+// 重置
+function resetPuzzle() {
+  document.getElementById("puzzle-container").innerHTML = "";
+  document.getElementById("puzzle-result").textContent = "";
+  pieces = [];
+  dragIndex = null;
+}
+// ============================================================================
     </script>
 </body>
 </html>
