@@ -22,6 +22,118 @@
             scroll-behavior: smooth; /* 全局平滑滚动 */
         }
 
+        /* 轮播图样式 */
+        .banner-slider {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .banner-wrap {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease;
+        }
+
+        .banner-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .banner-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .banner-overlay h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.7);
+            background: linear-gradient(90deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .banner-overlay h3 {
+            font-size: 1.6rem;
+            font-weight: normal;
+            margin-bottom: 1rem;
+        }
+
+        .banner-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .banner-arrow:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .banner-prev {
+            left: 20px;
+        }
+
+        .banner-next {
+            right: 20px;
+        }
+
+        .banner-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .banner-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .banner-dot.active {
+            background: #ffd700;
+            width: 24px;
+            border-radius: 6px;
+        }
+
         /* 新增：搜索栏样式 */
         .search-container {
             display: block; /* 默认显示，仅在首页展示 */
@@ -228,76 +340,35 @@
         #home {
             width: 100%;
             min-height: calc(100vh - 88px);
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url(images/03af9ed28fb06ea4cfa54a5404a816b2.jpg) center/cover no-repeat fixed; /* 视差背景 */
-            color: #fff;
+            background: #f7f3ed;
+            color: #333;
             display: none;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             text-align: center;
-            padding: 2rem;
+            padding: 0;
             position: relative;
             overflow: hidden;
-        }
-
-        /* 新增：首页动态粒子效果 */
-        #home::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 40%);
-            pointer-events: none;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(10px, 10px); }
-            50% { transform: translate(0, 10px); }
-            75% { transform: translate(-10px, 5px); }
-            100% { transform: translate(0, 0); }
         }
 
         #home.active {
             display: flex;
         }
 
-        #home h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.7);
-            background: linear-gradient(90deg, #fff, #ffd700);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: glow 3s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 4px 15px rgba(0,0,0,0.7); }
-            to { text-shadow: 0 4px 25px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.5); }
-        }
-
-        #home h3 {
-            font-size: 1.8rem;
-            font-weight: normal;
-            margin-bottom: 2rem;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        #home .home-content {
+            padding: 0 2rem 3rem;
+            max-width: 1200px;
         }
 
         #home p {
             font-size: 1.2rem;
             max-width: 900px;
-            margin: 0.8rem 0;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+            margin: 0.8rem auto;
         }
 
         #home .home-tag {
-            margin-top: 3rem;
+            margin-top: 2rem;
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
@@ -306,17 +377,15 @@
 
         #home .home-tag span {
             padding: 0.8rem 1.5rem;
-            background: rgba(255,255,255,0.15);
+            background: rgba(139, 69, 19, 0.1);
             border-radius: 30px;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid #8B4513;
             transition: all 0.3s ease;
         }
 
         #home .home-tag span:hover {
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(139, 69, 19, 0.2);
             transform: scale(1.05);
-            border-color: #ffd700;
         }
 
         /* 卡片布局样式 - 升级3D hover+动态阴影 */
@@ -1017,8 +1086,16 @@
                 gap: 1.5rem;
             }
 
-            #home h1 {
-                font-size: 2.5rem;
+            .banner-slider {
+                height: 360px;
+            }
+
+            .banner-overlay h1 {
+                font-size: 2.2rem;
+            }
+
+            .banner-overlay h3 {
+                font-size: 1.2rem;
             }
 
             .modal-content {
@@ -1068,9 +1145,77 @@
                 width: 100%;
             }
         }
+
+        /* ======================================
+           新增：一键分享按钮样式（与网站风格统一）
+        ======================================= */
+        .share-float {
+            position: fixed;
+            right: 20px;
+            bottom: 100px;
+            z-index: 9999;
+        }
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8B4513, #a0522d);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        .share-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #a0522d, #c17142);
+        }
+        .share-panel {
+            position: absolute;
+            right: 0;
+            bottom: 60px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            padding: 12px;
+            width: 180px;
+            display: none;
+        }
+        .share-panel.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .share-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 14px;
+            color: #333;
+        }
+        .share-item:hover {
+            background: #f5f0e8;
+        }
+        .share-item i {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+        .weixin { color: #07c160; }
+        .pengyouquan { color: #07c160; }
+        .weibo { color: #e6162d; }
+        .qq { color: #12b7f5; }
+        .copy { color: #8B4513; }
     </style>
 </head>
 <body>
+
     <!-- 导航栏 - 四大类+首页+知识课堂+互动学习 -->
     <nav>
         <div class="nav-wrap">
@@ -1095,9 +1240,38 @@
     </div>
 
     <!-- 首页板块 - 默认显示 -->
-    <section id="home" class="page-section active">
-        <h1>中国古代建筑成就</h1>
-        <h3>1911年前 · 民居 | 官府 | 皇宫 | 桥梁</h3>
+   <section id="home" class="page-section active">
+    <!-- 轮播Banner -->
+    <div class="banner-slider" id="bannerSlider">
+        <div class="banner-wrap" id="bannerWrap">
+            <div class="banner-item">
+                <img src="./images/乾清宫（北京故宫）.jpg" alt="故宫">
+                <div class="banner-overlay">
+                    <h1>中国古代建筑成就</h1>
+                    <h3>1911年前 · 民居 | 官府 | 皇宫 | 桥梁</h3>
+                </div>
+            </div>
+            <div class="banner-item">
+                <img src="./images/赵州桥.jpg" alt="赵州桥">
+                <div class="banner-overlay">
+                    <h1>千年桥梁奇迹</h1>
+                    <h3>世界领先的古代桥梁技术</h3>
+                </div>
+            </div>
+            <div class="banner-item">
+                <img src="./images/云南一颗印.jpg" alt="云南一颗印">
+                <div class="banner-overlay">
+                    <h1>传统民居智慧</h1>
+                    <h3>因地制宜的地域建筑文化</h3>
+                </div>
+            </div>
+        </div>
+        <button class="banner-arrow banner-prev" onclick="prevBanner()">&lt;</button>
+        <button class="banner-arrow banner-next" onclick="nextBanner()">&gt;</button>
+        <div class="banner-dots" id="bannerDots"></div>
+    </div>
+
+    <div class="home-content">
         <p>木构为骨，礼制为魂，天人合一，因地制宜</p>
         <p>中华五千载建筑智慧，凝聚成独树一帜的东方建筑体系</p>
         <div class="home-tag">
@@ -1109,7 +1283,8 @@
             <span>礼制秩序</span>
             <span>天人合一</span>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- 民居板块 - 全品类覆盖（1911年前） -->
     <section id="minju" class="page-section">
@@ -1381,7 +1556,7 @@
                 <p>3. 中国现存规模最大、保存最完整的皇宫是？</p>
                 <div class="quiz-option"><label><input type="radio" name="q3" value="1"> 北京故宫</label></div>
                 <div class="quiz-option"><label><input type="radio" name="q3" value="0"> 沈阳故宫</label></div>
-                <div class="quiz-option"><label><input type="radio" name="q3" value="0"> 唐大明宫</label></div>
+                <div class="quiz-option"><input type="radio" name="q3" value="0"> 唐大明宫</label></div>
             </div>
             <div class="quiz-item">
                 <p>4. 中国现存最完整的古代县衙是？</p>
@@ -1420,6 +1595,20 @@
             <img id="modal-img" class="modal-img">
             <span class="modal-period" id="modal-period"></span>
             <div class="modal-desc" id="modal-desc"></div>
+        </div>
+    </div>
+
+    <!-- ======================================
+         新增：一键分享悬浮按钮（右下角）
+    ======================================= -->
+    <div class="share-float">
+        <div class="share-btn" onclick="toggleShare()">🔗</div>
+        <div class="share-panel" id="sharePanel">
+            <div class="share-item weixin" onclick="shareToWechat()">💬 微信好友</div>
+            <div class="share-item pengyouquan" onclick="shareToPengyouquan()">🌐 朋友圈</div>
+            <div class="share-item weibo" onclick="shareToWeibo()">📕 微博</div>
+            <div class="share-item qq" onclick="shareToQQ()">🗨️ QQ</div>
+            <div class="share-item copy" onclick="copyLink()">📋 复制链接</div>
         </div>
     </div>
 
@@ -1463,7 +1652,7 @@
                     desc: "中国现存最完整的古代县级官署建筑，前衙后宅、中轴对称，完整保留了古代县衙的规制体系。" 
                 }
             ],
-            // 民居-1911年前 全地域/全民族经典
+                // 民居-1911年前 全地域/全民族经典
             minju: [
                 { 
                     name: "北京四合院", 
@@ -1747,6 +1936,7 @@
             ]
         };
 
+
         // 识图游戏数据
         const gameData = [
             { img: "./images/北京四合院.jpg", name: "北京四合院", options: ["北京四合院", "徽派民居", "福建土楼", "晋商大院"] },
@@ -1760,33 +1950,89 @@
             { img: "./images/沈阳故宫.jpg", name: "沈阳故宫", options: ["沈阳故宫", "北京故宫", "承德避暑山庄", "唐大明宫"] },
             { img: "./images/程阳永济桥.jpg", name: "程阳永济桥", options: ["程阳永济桥", "五亭桥", "风雨桥", "泸定桥"] }
         ];
-window.onload = function() {
-    renderCards('minju', buildingData.minju);
-    renderCards('guanfu', buildingData.guanfu);
-    renderCards('huanggong', buildingData.huanggong);
-    renderCards('qiaoliang', buildingData.qiaoliang);
-    
-    // 初始化游戏
-    initGame();
-    
-    // 监听回车键发送聊天
-    document.getElementById('chatInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            sendChatMessage();
-        }
-    });
 
-    // ====================== 新增：搜索框回车搜索 ======================
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            searchBuildings();
+        // 轮播图控制
+        let currentBanner = 0;
+        const bannerWrap = document.getElementById('bannerWrap');
+        const bannerItems = document.querySelectorAll('.banner-item');
+        const bannerDots = document.getElementById('bannerDots');
+        const bannerTotal = bannerItems.length;
+
+        // 初始化轮播指示器
+        function initBannerDots() {
+            bannerDots.innerHTML = '';
+            for (let i = 0; i < bannerTotal; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'banner-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.onclick = () => goToBanner(i);
+                bannerDots.appendChild(dot);
+            }
         }
-    });
-    // ================================================================
-};
+
+        // 更新轮播
+        function updateBanner() {
+            bannerWrap.style.transform = `translateX(-${currentBanner * 100}%)`;
+            document.querySelectorAll('.banner-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentBanner);
+            });
+        }
+
+        // 下一张
+        function nextBanner() {
+            currentBanner = (currentBanner + 1) % bannerTotal;
+            updateBanner();
+        }
+
+        // 上一张
+        function prevBanner() {
+            currentBanner = (currentBanner - 1 + bannerTotal) % bannerTotal;
+            updateBanner();
+        }
+
+        // 跳转到指定轮播
+        function goToBanner(index) {
+            currentBanner = index;
+            updateBanner();
+        }
+
+        // 自动轮播
+        let bannerAuto = setInterval(nextBanner, 4000);
+
+        // 鼠标悬停暂停轮播
+        document.getElementById('bannerSlider').onmouseenter = () => clearInterval(bannerAuto);
+        document.getElementById('bannerSlider').onmouseleave = () => bannerAuto = setInterval(nextBanner, 4000);
+
+        window.onload = function() {
+            renderCards('minju', buildingData.minju);
+            renderCards('guanfu', buildingData.guanfu);
+            renderCards('huanggong', buildingData.huanggong);
+            renderCards('qiaoliang', buildingData.qiaoliang);
+            
+            // 初始化轮播
+            initBannerDots();
+            
+            // 初始化游戏
+            initGame();
+            
+            // 监听回车键发送聊天
+            document.getElementById('chatInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendChatMessage();
+                }
+            });
+
+            // ====================== 新增：搜索框回车搜索 ======================
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    searchBuildings();
+                }
+            });
+            // ================================================================
+        };
 
         // 渲染建筑卡片
         function renderCards(type, data) {
@@ -2301,6 +2547,97 @@ function resetPuzzle() {
   dragIndex = null;
 }
 // ============================================================================
-    </script>
+// ======================================
+// 最终修复版：全平台兼容 微信分享
+// ======================================
+const shareTitle = "中国古代建筑成就（1911年前）";
+const shareDesc = "民居·官府·皇宫·桥梁｜木构架体系·礼制秩序·天人合一·地域因地制宜";
+const shareUrl = window.location.href;
+const shareImg = "https://你的网站域名/分享封面图.jpg"; // 替换成你网站的分享封面图地址
+
+// 切换分享面板显示/隐藏
+function toggleShare() {
+    const panel = document.getElementById("sharePanel");
+    panel.classList.toggle("show");
+}
+
+// 分享到微信（PC/手机通用：弹出二维码+复制提示）
+function shareToWechat() {
+    // 生成微信分享二维码（使用免费稳定的二维码接口）
+    const qrcodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=${encodeURIComponent(shareUrl)}`;
+    
+    // 创建弹窗
+    const modal = document.createElement("div");
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7); display: flex; align-items: center;
+        justify-content: center; z-index: 9999;
+    `;
+    modal.innerHTML = `
+        <div style="background: #fff; padding: 24px; border-radius: 12px; text-align: center;">
+            <h3 style="margin: 0 0 12px 0; font-size: 18px;">分享到微信</h3>
+            <p style="margin: 0 0 16px 0; color: #666;">用微信扫码即可分享给好友/朋友圈</p>
+            <img src="${qrcodeUrl}" alt="分享二维码" style="width: 200px; height: 200px; border-radius: 8px;">
+            <div style="margin-top: 16px;">
+                <button onclick="copyShareLink()" style="
+                    padding: 8px 20px; background: #07c160; color: #fff;
+                    border: none; border-radius: 6px; cursor: pointer; font-size: 14px;
+                ">复制链接</button>
+                <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
+                    margin-left: 12px; padding: 8px 20px; background: #eee;
+                    border: none; border-radius: 6px; cursor: pointer; font-size: 14px;
+                ">关闭</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    // 点击遮罩关闭
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.remove();
+    });
+    toggleShare();
+}
+
+// 分享到朋友圈（同微信好友，复用二维码）
+function shareToPengyouquan() {
+    shareToWechat(); // 朋友圈和好友用同一个二维码，扫码后可选择分享到朋友圈
+}
+
+// 复制分享链接（独立函数，供弹窗调用）
+function copyShareLink() {
+    navigator.clipboard.writeText(shareUrl).then(() => {
+        alert("✅ 链接已复制！可直接粘贴到微信分享");
+    }).catch(() => {
+        alert("❌ 复制失败，请手动复制地址栏链接");
+    });
+}
+
+// 分享到微博（正常跳转）
+function shareToWeibo() {
+    window.open(`https://service.weibo.com/share/share.php?title=${encodeURIComponent(shareTitle + " " + shareDesc)}&url=${encodeURIComponent(shareUrl)}&pic=${encodeURIComponent(shareImg)}`, '_blank');
+    toggleShare();
+}
+
+// 分享到QQ（正常跳转）
+function shareToQQ() {
+    window.open(`https://connect.qq.com/widget/shareqq/index.html?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareTitle)}&desc=${encodeURIComponent(shareDesc)}&pic=${encodeURIComponent(shareImg)}`, '_blank');
+    toggleShare();
+}
+
+// 复制链接（原功能保留）
+function copyLink() {
+    copyShareLink();
+    toggleShare();
+}
+
+// 点击空白关闭分享面板
+document.addEventListener("click", function(e) {
+    const shareFloat = document.querySelector(".share-float");
+    const panel = document.getElementById("sharePanel");
+    if (!shareFloat.contains(e.target)) {
+        panel.classList.remove("show");
+    }
+});
+</script>
 </body>
 </html>
