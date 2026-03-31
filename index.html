@@ -577,77 +577,136 @@
         }
 
         /* 知识课堂样式 - 升级折叠面板+交互 */
-        .knowledge-box {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            max-width: 1400px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
+/* 知识课堂样式 - 超级增强版：卡片、图标、动画、图片、分割线 */
+.knowledge-box {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid #f0e6dc;
+}
 
-        .knowledge-tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
+.knowledge-tabs {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-        .knowledge-tab {
-            padding: 0.8rem 1.5rem;
-            background: #f0e6dc;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            color: #8B4513;
-        }
+.knowledge-tab {
+    padding: 1rem 1.4rem;
+    background: #f9f6f1;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    color: #8B4513;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
 
-        .knowledge-tab.active {
-            background: #8B4513;
-            color: #fff;
-        }
+.knowledge-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(139,69,19,0.1);
+}
 
-        .knowledge-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
+.knowledge-tab.active {
+    background: linear-gradient(90deg, #8B4513, #a0522d);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(139,69,19,0.2);
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+.knowledge-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+    padding: 1rem 0.5rem;
+}
 
-        .knowledge-content.active {
-            display: block;
-        }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        .knowledge-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+.knowledge-content.active {
+    display: block;
+}
 
-        .knowledge-table th, .knowledge-table td {
-            padding: 1rem;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
+/* 知识卡片样式（新增） */
+.knowledge-card {
+    background: #fdfbf7;
+    border-left: 5px solid #8B4513;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    transition: all 0.3s;
+}
+.knowledge-card:hover {
+    transform: translateX(6px);
+    box-shadow: 0 5px 15px rgba(139,69,19,0.08);
+}
+.knowledge-card h4 {
+    color: #8B4513;
+    margin-bottom: 0.6rem;
+    font-size: 1.15rem;
+}
+.knowledge-card p {
+    line-height: 1.8;
+    color: #444;
+}
 
-        .knowledge-table th {
-            background: linear-gradient(90deg, #f0e6dc, #e6d7c0);
-            color: #8B4513;
-            font-weight: bold;
-        }
+/* 知识图片（新增） */
+.knowledge-img {
+    width: 100%;
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 1rem 0 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-        .knowledge-table tr:nth-child(even) {
-            background: #f9f6f1;
-        }
+/* 标题装饰 */
+.knowledge-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.2rem;
+}
+.knowledge-title i {
+    font-size: 1.6rem;
+}
+
+/* 表格美化 */
+.knowledge-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.knowledge-table th, .knowledge-table td {
+    padding: 1.1rem;
+    border: 1px solid #eee;
+    text-align: center;
+}
+.knowledge-table th {
+    background: linear-gradient(90deg, #f0e6dc, #e6d7c0);
+    color: #8B4513;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.knowledge-table tr:nth-child(even) {
+    background: #f9f6f1;
+}
+.knowledge-table tr:hover {
+    background: #f3ebe0;
+}
 
         /* 新增：AI问答模块样式 */
         .ai-chat-box {
@@ -1240,7 +1299,8 @@
     </div>
 
     <!-- 首页板块 - 默认显示 -->
-   <section id="home" class="page-section active">
+  <!-- 首页板块 - 已大幅丰富内容 -->
+<section id="home" class="page-section active">
     <!-- 轮播Banner -->
     <div class="banner-slider" id="bannerSlider">
         <div class="banner-wrap" id="bannerWrap">
@@ -1272,8 +1332,20 @@
     </div>
 
     <div class="home-content">
+        <!-- 新增：首页大标题 -->
+        <h2 style="font-size: 2.4rem; color: #8B4513; margin-bottom: 1.5rem;">中华建筑 · 千年传承</h2>
+        
         <p>木构为骨，礼制为魂，天人合一，因地制宜</p>
         <p>中华五千载建筑智慧，凝聚成独树一帜的东方建筑体系</p>
+        
+        <!-- 新增：首页简介段落 -->
+        <div style="max-width: 900px; margin: 2rem auto; font-size: 1.15rem; line-height: 2; color: #444;">
+            中国古代建筑是世界建筑史上延续时间最长、体系最完整、地域特色最鲜明的建筑体系。
+            从民居的烟火气，到官府的威仪，从皇宫的恢弘，到桥梁的精巧，
+            每一座建筑都承载着历史、文化、技艺与哲学，是中华文明最鲜活的物质载体。
+        </div>
+
+        <!-- 特色标签 -->
         <div class="home-tag">
             <span>木构架体系</span>
             <span>榫卯斗拱</span>
@@ -1282,6 +1354,73 @@
             <span>工程奇迹</span>
             <span>礼制秩序</span>
             <span>天人合一</span>
+        </div>
+    </div>
+
+    <!-- 新增：首页四大分类入口卡片 -->
+    <div style="max-width: 1400px; margin: 3rem auto; padding: 0 1.5rem;">
+        <h2 style="text-align:center; font-size: 2rem; color: #8B4513; margin-bottom: 2rem;">四大建筑类别</h2>
+        <div class="card-grid">
+            <div class="card" onclick="switchSection('minju')">
+                <div class="card-img-wrapper">
+                    <img src="./images/北京四合院.jpg" alt="民居">
+                    <div class="card-img-tooltip">民居 · 烟火人间</div>
+                </div>
+                <div class="card-body">
+                    <h3>🏠 传统民居</h3>
+                    <p>地域特色鲜明，承载民间生活与家族文化，最具烟火气的建筑形态。</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="switchSection('guanfu')">
+                <div class="card-img-wrapper">
+                    <img src="./images/平遥县衙.jpg" alt="官府">
+                    <div class="card-img-tooltip">官府 · 威仪天下</div>
+                </div>
+                <div class="card-body">
+                    <h3>🏛️ 官府建筑</h3>
+                    <p>等级森严、庄重对称，是古代行政制度与官式建筑的集中体现。</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="switchSection('huanggong')">
+                <div class="card-img-wrapper">
+                    <img src="./images/北京故宫（紫禁城）.jpg" alt="皇宫">
+                    <div class="card-img-tooltip">皇宫 · 皇权之巅</div>
+                </div>
+                <div class="card-body">
+                    <h3>🏯 皇宫建筑</h3>
+                    <p>中轴对称、气势恢宏，集古代建筑技艺之大成，彰显皇权至上。</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="switchSection('qiaoliang')">
+                <div class="card-img-wrapper">
+                    <img src="./images/赵州桥.jpg" alt="桥梁">
+                    <div class="card-img-tooltip">桥梁 · 天堑通途</div>
+                </div>
+                <div class="card-body">
+                    <h3>🌉 古代桥梁</h3>
+                    <p>工程与艺术的完美结合，多项技术世界首创，跨越千年依然屹立。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增：网站功能入口 -->
+    <div style="max-width: 1400px; margin: 3rem auto; padding: 2rem; background: #fff; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+        <h2 style="text-align:center; font-size: 2rem; color: #8B4513; margin-bottom: 2rem;">探索更多功能</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: center;">
+            
+            <div onclick="switchSection('knowledge')" style="padding: 1.5rem; cursor: pointer; border-radius: 12px; background: #f9f6f1; transition: 0.3s;">
+                <h3 style="color: #8B4513; font-size: 1.3rem; margin-bottom: 0.5rem;">📚 知识课堂</h3>
+                <p>学习建筑结构、理念、发展脉络与地域流派</p>
+            </div>
+
+            <div onclick="switchSection('quiz')" style="padding: 1.5rem; cursor: pointer; border-radius: 12px; background: #f9f6f1; transition: 0.3s;">
+                <h3 style="color: #8B4513; font-size: 1.3rem; margin-bottom: 0.5rem;">🧠 互动学习</h3>
+                <p>识图游戏、拼图挑战、知识问答，边玩边学</p>
+            </div>
         </div>
     </div>
 </section>
@@ -1320,142 +1459,258 @@
         <div class="card-grid" id="search-result-container"></div>
     </section>
 
-    <!-- 知识课堂板块 - 升级为标签页交互 + AI问答 -->
-    <section id="knowledge" class="page-section">
-        <h2>📚 建筑知识小课堂</h2>
-        <div class="knowledge-box">
-            <div class="knowledge-tabs">
-                <button class="knowledge-tab active" onclick="switchKnowledgeTab('structure')">核心结构</button>
-                <button class="knowledge-tab" onclick="switchKnowledgeTab('concept')">建筑理念</button>
-                <button class="knowledge-tab" onclick="switchKnowledgeTab('development')">发展脉络</button>
-                <button class="knowledge-tab" onclick="switchKnowledgeTab('region')">地域流派</button>
-                <button class="knowledge-tab" onclick="switchKnowledgeTab('compare')">类型对比</button>
-            </div>
-
-            <div class="knowledge-content active" id="structure">
-                <h3 style="color: #8B4513; margin-bottom: 1rem;">核心建筑结构</h3>
-                <ul style="line-height: 2; padding-left: 2rem;">
-                    <li><strong>木构架</strong>：抬梁式（北方主流，层层抬梁承托屋顶）、穿斗式（南方主流，穿枋串联柱子）、井干式（林区用原木堆叠）</li>
-                    <li><strong>斗拱</strong>：中国古建筑特有的承重构件，将屋顶重量传导至立柱，兼具装饰与抗震功能</li>
-                    <li><strong>榫卯</strong>：木构件间的连接方式，无需钉子，可承受各种外力，是木构建筑的灵魂</li>
-                    <li><strong>飞檐</strong>：屋檐向上翘起，增加采光、利于排水，兼具美学价值</li>
-                    <li><strong>藻井</strong>：天花板中央的装饰性结构，多为八角形或圆形，常见于宫殿、寺庙核心位置</li>
-                </ul>
-            </div>
-
-            <div class="knowledge-content" id="concept">
-                <h3 style="color: #8B4513; margin-bottom: 1rem;">传统建筑理念</h3>
-                <ul style="line-height: 2; padding-left: 2rem;">
-                    <li><strong>天人合一</strong>：建筑顺应自然环境，与山水、气候融为一体，追求人与自然的和谐</li>
-                    <li><strong>礼制秩序</strong>：建筑的规模、形制、装饰严格遵循等级制度，体现社会秩序</li>
-                    <li><strong>因地制宜</strong>：根据地域气候、材料、文化特点设计，如北方厚墙保暖、南方通透通风</li>
-                    <li><strong>风水思想</strong>：讲究藏风聚气、背山面水，影响建筑选址与布局</li>
-                    <li><strong>对称均衡</strong>：以中轴线为中心对称布局，体现中式美学的平衡感</li>
-                </ul>
-            </div>
-
-            <div class="knowledge-content" id="development">
-                <h3 style="color: #8B4513; margin-bottom: 1rem;">建筑发展脉络</h3>
-                <ol style="line-height: 2; padding-left: 2rem;">
-                    <li><strong>先秦萌芽</strong>：夯土技术成熟，木构架雏形出现，形成基本建筑礼制</li>
-                    <li><strong>秦汉奠基</strong>：大规模宫殿、陵墓建设，抬梁式木构架体系成熟</li>
-                    <li><strong>隋唐成熟</strong>：建筑规模宏大，斗拱体系完善，桥梁技术世界领先</li>
-                    <li><strong>宋精致化</strong>：建筑向精巧化发展，《营造法式》规范建筑标准</li>
-                    <li><strong>元融合</strong>：融合蒙藏建筑风格，简化木构架，增加装饰多样性</li>
-                    <li><strong>明规范</strong>：建筑形制规范化，砖作技术普及，紫禁城建成</li>
-                    <li><strong>清集大成</strong>：建筑技艺达到顶峰，融合各民族风格，园林艺术成熟</li>
-                </ol>
-            </div>
-
-            <div class="knowledge-content" id="region">
-                <h3 style="color: #8B4513; margin-bottom: 1rem;">地域建筑流派</h3>
-                <ul style="line-height: 2; padding-left: 2rem;">
-                    <li><strong>北方四合院</strong>：北京为代表，封闭围合，尊卑有序</li>
-                    <li><strong>江南民居</strong>：苏浙为代表，宅园结合，小巧精致</li>
-                    <li><strong>岭南骑楼</strong>：两广闽为代表，中西合璧，遮阳避雨</li>
-                    <li><strong>西南吊脚楼</strong>：湘黔渝为代表，干栏式结构，通风防潮</li>
-                    <li><strong>西北窑洞</strong>：陕甘宁为代表，穴居式，冬暖夏凉</li>
-                    <li><strong>福建土楼</strong>：闽粤赣为代表，夯土巨型建筑，聚族而居</li>
-                    <li><strong>藏族碉房</strong>：青藏地区，石砌厚墙，适应高寒气候</li>
-                </ul>
-            </div>
-
-            <div class="knowledge-content" id="compare">
-                <table class="knowledge-table">
-                    <tr>
-                        <th>建筑类型</th>
-                        <th>功能</th>
-                        <th>等级</th>
-                        <th>核心特点</th>
-                    </tr>
-                    <tr>
-                        <td>民居</td>
-                        <td>居住生活、家族聚居</td>
-                        <td>低</td>
-                        <td>地域化、生活化、实用性强</td>
-                    </tr>
-                    <tr>
-                        <td>官府</td>
-                        <td>办公理政、司法行政</td>
-                        <td>中</td>
-                        <td>庄重对称、等级鲜明、威仪感强</td>
-                    </tr>
-                    <tr>
-                        <td>皇宫</td>
-                        <td>帝王朝政、皇家生活</td>
-                        <td>最高</td>
-                        <td>中轴对称、宏伟壮丽、礼制极致</td>
-                    </tr>
-                    <tr>
-                        <td>桥梁</td>
-                        <td>交通通行、水利协调</td>
-                        <td>无等级</td>
-                        <td>工程技术主导、结构精巧、实用性强</td>
-                    </tr>
-                </table>
-            </div>
+   <!-- 知识课堂板块 - 升级为标签页交互 + AI问答 -->
+<section id="knowledge" class="page-section">
+    <h2>📚 建筑知识小课堂</h2>
+    <div class="knowledge-box">
+        <div class="knowledge-tabs">
+            <button class="knowledge-tab active" onclick="switchKnowledgeTab('structure')">🏛️ 核心结构</button>
+            <button class="knowledge-tab" onclick="switchKnowledgeTab('concept')">📜 建筑理念</button>
+            <button class="knowledge-tab" onclick="switchKnowledgeTab('development')">⏳ 发展脉络</button>
+            <button class="knowledge-tab" onclick="switchKnowledgeTab('region')">🗺️ 地域流派</button>
+            <button class="knowledge-tab" onclick="switchKnowledgeTab('compare')">📊 类型对比</button>
+            <button class="knowledge-tab" onclick="switchKnowledgeTab('vocabulary')">📖 建筑词汇</button>
+            <button class="knowledge-tab" onclick="switchKnowledgeTab('craft')">🛠️ 建造工艺</button>
         </div>
 
-        <!-- 新增：AI问答模块 -->
-        <div class="ai-chat-box">
-            <div class="ai-chat-header">
-                🤖 AI建筑知识问答
-            </div>
-            
-            <!-- 新增：常见问题快捷按钮 -->
-            <div class="chat-quick-questions">
-                <button class="quick-question-btn" onclick="sendQuickQuestion('中国古代建筑的核心结构有哪些？')">中国古代建筑的核心结构有哪些？</button>
-                <button class="quick-question-btn" onclick="sendQuickQuestion('四合院的布局特点是什么？')">四合院的布局特点是什么？</button>
-                <button class="quick-question-btn" onclick="sendQuickQuestion('赵州桥的建筑技术有什么创新？')">赵州桥的建筑技术有什么创新？</button>
-                <button class="quick-question-btn" onclick="sendQuickQuestion('故宫的建筑礼制体现在哪些方面？')">故宫的建筑礼制体现在哪些方面？</button>
-                <button class="quick-question-btn" onclick="sendQuickQuestion('福建土楼为什么是圆形的？')">福建土楼为什么是圆形的？</button>
-                <button class="quick-question-btn" onclick="sendQuickQuestion('斗拱和榫卯的区别是什么？')">斗拱和榫卯的区别是什么？</button>
-                <button class="quick-question-btn" onclick="sendQuickQuestion('不同地域的民居有什么差异？')">不同地域的民居有什么差异？</button>
-                <button class="quick-question-btn" onclick="sendQuickQuestion('古代桥梁有哪些类型？')">古代桥梁有哪些类型？</button>
-            </div>
-            
-            <div class="chat-container" id="chatContainer">
-                <!-- 欢迎消息 -->
-                <div class="chat-message ai-message">
-                    <div>你好！我是中国古代建筑知识AI助手，有任何关于古代民居、官府、皇宫、桥梁的问题都可以问我哦！</div>
-                    <div class="message-time" id="messageTime"></div>
-                    <script>
-  // 定义更新时间的函数
-  function updateTime() {
-  const timeEl = document.getElementById('messageTime');
-  if (!timeEl) return; // 找不到元素就不执行，不会报错
-  timeEl.textContent = new Date().toLocaleTimeString();
-}
-</script>
-                </div>
-            </div>
-            <div class="chat-input-container">
-                <textarea class="chat-input" id="chatInput" placeholder="请输入你的问题（例如：赵州桥的建筑特点是什么？、四合院的布局有什么讲究？）"></textarea>
-                <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">发送</button>
+ <div class="knowledge-content active" id="structure">
+    <div class="knowledge-title">
+        <i>🏛️</i>
+        <h3 style="color: #8B4513; margin:0;">核心建筑结构</h3>
+    </div>
+    <div class="knowledge-card">
+        <h4>🪵 木构架体系</h4>
+        <p>抬梁式（北方主流，层层抬梁承托屋顶）、穿斗式（南方主流，穿枋串联柱子）、井干式（林区用原木堆叠），是中国古建筑最核心的骨架。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🛡️ 斗拱</h4>
+        <p>中国古建筑特有的承重构件，将屋顶重量传导至立柱，兼具装饰与抗震功能，是等级与技艺的象征。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🔗 榫卯</h4>
+        <p>木构件间的连接方式，无需钉子，可承受各种外力，是木构建筑的灵魂，抗震能力极强。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏮 飞檐 & 藻井</h4>
+        <p>飞檐：屋檐向上翘起，增加采光、利于排水；藻井：天花板中央的装饰结构，常见于宫殿、寺庙核心位置。</p>
+    </div>
+</div>
+
+<div class="knowledge-content" id="concept">
+    <div class="knowledge-title">
+        <i>📜</i>
+        <h3 style="color: #8B4513; margin:0;">传统建筑理念</h3>
+    </div>
+    <div class="knowledge-card">
+        <h4>☯️ 天人合一</h4>
+        <p>建筑顺应自然环境，与山水、气候融为一体，追求人与自然的和谐，是中式建筑的核心思想。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>⚖️ 礼制秩序</h4>
+        <p>建筑的规模、形制、装饰严格遵循等级制度，体现社会秩序，彰显尊卑有序的传统理念。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🌍 因地制宜</h4>
+        <p>根据地域气候、材料、文化特点设计，如北方厚墙保暖、南方通透通风，适配各地自然与人文环境。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🧭 风水思想</h4>
+        <p>讲究藏风聚气、背山面水，深刻影响建筑选址与布局，兼顾实用功能与精神寄托。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>⚖️ 对称均衡</h4>
+        <p>以中轴线为中心对称布局，体现中式美学的平衡感，营造庄重、稳定的空间氛围。</p>
+    </div>
+</div>
+
+<div class="knowledge-content" id="development">
+    <div class="knowledge-title">
+        <i>⏳</i>
+        <h3 style="color: #8B4513; margin:0;">建筑发展脉络</h3>
+    </div>
+    <div class="knowledge-card">
+        <h4>🌱 先秦萌芽</h4>
+        <p>夯土技术成熟，木构架雏形出现，形成基本建筑礼制，为后续古建筑发展奠定基础。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🧱 秦汉奠基</h4>
+        <p>大规模宫殿、陵墓建设，抬梁式木构架体系成熟，建筑规模与技艺实现质的提升。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏯 隋唐成熟</h4>
+        <p>建筑规模宏大，斗拱体系完善，桥梁技术世界领先，形成大气磅礴的建筑风格。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>✍️ 宋精致化</h4>
+        <p>建筑向精巧化发展，《营造法式》问世，系统规范建筑标准，技艺更趋精细。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🤝 元融合</h4>
+        <p>融合蒙藏建筑风格，简化木构架，增加装饰多样性，推动建筑文化的多元发展。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>📏 明规范</h4>
+        <p>建筑形制规范化，砖作技术普及，紫禁城建成，成为中式宫殿建筑的典范。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏆 清集大成</h4>
+        <p>建筑技艺达到顶峰，融合各民族风格，园林艺术成熟，实现建筑与美学的完美融合。</p>
+    </div>
+</div>
+
+<div class="knowledge-content" id="region">
+    <div class="knowledge-title">
+        <i>🗺️</i>
+        <h3 style="color: #8B4513; margin:0;">地域建筑流派</h3>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏡 北方四合院</h4>
+        <p>以北京为代表，采用封闭围合式布局，讲究尊卑有序，适配北方寒冷气候与家族聚居需求。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🎋 江南民居</h4>
+        <p>以苏浙地区为代表，宅园结合，小巧精致，注重通风采光，与江南水乡风光相得益彰。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏙️ 岭南骑楼</h4>
+        <p>以两广、福建为代表，中西合璧风格，廊道连贯遮阳避雨，适配岭南炎热多雨的气候。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🌿 西南吊脚楼</h4>
+        <p>以湘黔渝地区为代表，采用干栏式结构，悬空建造，通风防潮，适配西南多山地、潮湿的环境。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏚️ 西北窑洞</h4>
+        <p>以陕甘宁地区为代表，采用穴居式结构，就地取材，冬暖夏凉，适配西北干旱少雨、温差大的气候。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏰 福建土楼</h4>
+        <p>以闽粤赣地区为代表，夯土建造的巨型建筑，环形布局，兼具防御与居住功能，适合聚族而居。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏔️ 藏族碉房</h4>
+        <p>分布于青藏地区，采用石砌厚墙，坚固耐用，保暖性强，完美适配高原高寒气候。</p>
+    </div>
+</div>
+
+<div class="knowledge-content" id="compare">
+    <div class="knowledge-title">
+        <i>📊</i>
+        <h3 style="color: #8B4513; margin:0;">建筑类型对比</h3>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏠 民居</h4>
+        <p>功能：居住生活、家族聚居；等级：低；核心特点：地域化、生活化、实用性强，适配普通百姓居住需求。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏛️ 官府</h4>
+        <p>功能：办公理政、司法行政；等级：中；核心特点：庄重对称、等级鲜明、威仪感强，彰显官员身份与权力。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>👑 皇宫</h4>
+        <p>功能：帝王朝政、皇家生活；等级：最高；核心特点：中轴对称、宏伟壮丽、礼制极致，体现皇家至高无上的地位。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🌉 桥梁</h4>
+        <p>功能：交通通行、水利协调；等级：无等级；核心特点：工程技术主导、结构精巧、实用性强，兼顾交通与水利需求。</p>
+    </div>
+</div>
+
+<div class="knowledge-content" id="vocabulary">
+    <div class="knowledge-title">
+        <i>📖</i>
+        <h3 style="color: #8B4513; margin:0;">常用建筑词汇</h3>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏡 庑殿顶</h4>
+        <p>最高等级屋顶，采用四面坡设计，造型庄重宏伟，主要用于皇宫正殿等核心建筑。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏯 歇山顶</h4>
+        <p>第二等级屋顶，兼具四面坡与两面坡的特点，常用于宫殿、寺庙等重要建筑。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🏠 硬山顶</h4>
+        <p>普通民居常用屋顶，设计简单实用，两侧山墙与屋顶齐平，适配百姓居住需求。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🌧️ 悬山顶</h4>
+        <p>屋檐伸出山墙外侧，既能增加采光，又能有效防雨，常见于南方民居。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>📏 开间</h4>
+        <p>指房屋的宽度，开间数量越多，建筑等级越高，是体现建筑规格的重要指标。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>📐 进深</h4>
+        <p>指房屋的前后深度，与开间共同决定建筑的整体规模与空间布局。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🪨 台基</h4>
+        <p>建筑底部的基座，台基越高，建筑等级越高，兼具承重、防潮与装饰功能。</p>
+    </div>
+</div>
+
+<div class="knowledge-content" id="craft">
+    <div class="knowledge-title">
+        <i>🛠️</i>
+        <h3 style="color: #8B4513; margin:0;">古代建造工艺</h3>
+    </div>
+    <div class="knowledge-card">
+        <h4>🧱 夯土</h4>
+        <p>将泥土分层夯实成墙，坚固耐用、就地取材，是古代建筑最基础、最常用的建造工艺。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>✂️ 砖雕</h4>
+        <p>以青砖为原料雕刻各类花纹，常用于门楼、墙面、屋脊等部位，兼具装饰与文化内涵。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🪵 木雕</h4>
+        <p>在门窗、梁架、斗拱等木构件上雕刻图案，工艺精美细腻，是中式建筑装饰的重要形式。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🪨 石雕</h4>
+        <p>以石材为原料雕刻，常用于栏杆、柱础、石狮、石碑等，造型庄重大气，兼具实用与装饰功能。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🎨 琉璃瓦</h4>
+        <p>经高温烧制而成，色彩鲜艳、质地坚硬，多为皇家专用，用于宫殿、寺庙等高端建筑的屋顶。</p>
+    </div>
+    <div class="knowledge-card">
+        <h4>🎨 彩画</h4>
+        <p>在建筑梁枋、斗拱等部位绘制彩绘，不仅能起到防水、防腐的作用，还能丰富建筑的装饰效果。</p>
+    </div>
+</div>
+
+    <!-- AI问答模块 -->
+    <div class="ai-chat-box">
+        <div class="ai-chat-header">
+            🤖 AI建筑知识问答
+        </div>
+        
+        <div class="chat-quick-questions">
+            <button class="quick-question-btn" onclick="sendQuickQuestion('中国古代建筑的核心结构有哪些？')">中国古代建筑的核心结构有哪些？</button>
+            <button class="quick-question-btn" onclick="sendQuickQuestion('四合院的布局特点是什么？')">四合院的布局特点是什么？</button>
+            <button class="quick-question-btn" onclick="sendQuickQuestion('赵州桥的建筑技术有什么创新？')">赵州桥的建筑技术有什么创新？</button>
+            <button class="quick-question-btn" onclick="sendQuickQuestion('故宫的建筑礼制体现在哪些方面？')">故宫的建筑礼制体现在哪些方面？</button>
+            <button class="quick-question-btn" onclick="sendQuickQuestion('福建土楼为什么是圆形的？')">福建土楼为什么是圆形的？</button>
+            <button class="quick-question-btn" onclick="sendQuickQuestion('斗拱和榫卯的区别是什么？')">斗拱和榫卯的区别是什么？</button>
+            <button class="quick-question-btn" onclick="sendQuickQuestion('不同地域的民居有什么差异？')">不同地域的民居有什么差异？</button>
+            <button class="quick-question-btn" onclick="sendQuickQuestion('古代桥梁有哪些类型？')">古代桥梁有哪些类型？</button>
+        </div>
+        
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-message ai-message">
+                <div>你好！我是中国古代建筑知识AI助手，有任何关于古代民居、官府、皇宫、桥梁的问题都可以问我哦！</div>
+                <div class="message-time" id="messageTime"></div>
             </div>
         </div>
-    </section>
-
+        <div class="chat-input-container">
+            <textarea class="chat-input" id="chatInput" placeholder="请输入你的问题（例如：赵州桥的建筑特点是什么？、四合院的布局有什么讲究？）"></textarea>
+            <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">发送</button>
+        </div>
+    </div>
+</section>
        <!-- 互动学习板块 - 重构为标签页样式 -->
 <section id="quiz" class="page-section">
     <h2>🧠 互动学习</h2>
