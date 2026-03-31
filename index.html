@@ -2316,32 +2316,46 @@
         }
 
         // 切换板块
-        function switchSection(sectionId) {
-            // 隐藏所有板块
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // 显示选中板块
-            document.getElementById(sectionId).classList.add('active');
-            
-            // 更新导航按钮状态
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.onclick.toString().includes(sectionId)) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // 控制搜索栏显示：仅首页和搜索结果页显示
-            const searchContainer = document.getElementById('searchContainer');
-            if (sectionId === 'home' || sectionId === 'search-result') {
-                searchContainer.style.display = 'block';
-            } else {
-                searchContainer.style.display = 'none';
-            }
+      // 切换板块 —— 已修复：切换自动回到顶部（兼容所有场景）
+function switchSection(sectionId) {
+    // 隐藏所有板块
+    document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // 显示选中板块
+    document.getElementById(sectionId).classList.add('active');
+    
+    // 更新导航按钮状态
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.onclick.toString().includes(sectionId)) {
+            btn.classList.add('active');
         }
+    });
+    
+    // 控制搜索栏显示：仅首页和搜索结果页显示
+    const searchContainer = document.getElementById('searchContainer');
+    if (sectionId === 'home' || sectionId === 'search-result') {
+        searchContainer.style.display = 'block';
+    } else {
+        searchContainer.style.display = 'none';
+    }
 
+    // ✅ 最终修复：延迟滚动，兼容平滑滚动+内部滚动容器
+    setTimeout(() => {
+        // 页面整体回到顶部
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'instant' // 强制瞬间滚动，无视平滑滚动
+        });
+        // 所有内部滚动容器重置到顶部
+        document.querySelectorAll('.knowledge-box, .chat-container, .quiz-box, .interactive-content').forEach(el => {
+            if(el) el.scrollTop = 0;
+        });
+    }, 10);
+}
         // 切换知识课堂标签页
         function switchKnowledgeTab(tabId) {
             // 隐藏所有内容
